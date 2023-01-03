@@ -8,24 +8,24 @@ using namespace std;
 
 class Group{
 	private:
-		int *size;
+		vector<int> size;
 		int nPeople;
 		int timeEnter;
 		int timeExit;
 		int id;
-		int *skateID;
+		vector<int> skateID;
 	public:
 		Group(){}
 		Group(int nPeople, int id){
 			this->nPeople = nPeople;
-			size = (int*)malloc(sizeof(int)*nPeople);
+			size = vector<int>(nPeople);
 			for(int i=0; i<nPeople; i++){
 				size[i] = rand()%21+24;
 			}
 			timeEnter = 0;
 			timeExit = 0;
 			this->id = id;
-			skateID = new int[nPeople];
+			skateID = vector<int>(nPeople);
 		}
 		int getID(){
 			return id;

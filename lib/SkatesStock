@@ -28,10 +28,10 @@ class SkatesStock{
 
 			newMaintenance = 0;
 		}
-		int getStockOfSize(int i){
+		int getStockOfSize(int size){
 			int stock;
 			for(int j=0; j<6; j++){
-				if(skate[i-sizeStart][j].isAvailable()){
+				if(skate[size-sizeStart][j].isAvailable()){
 					stock++;
 				}
 			}
@@ -68,7 +68,7 @@ class SkatesStock{
 			return j; // returns skate id
 		}
 		bool checkAvailabilityForGroup(Group g){
-			int *tempstock = new int[sizeEnd-sizeStart+1];
+			vector<int> tempstock(sizeEnd-sizeStart+1);
 			for(int i=0; i<sizeEnd-sizeStart+1; i++){
 				tempstock[i] = getStockOfSize(i+sizeStart);
 			}

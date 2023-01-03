@@ -1,5 +1,11 @@
 // Stabilimento Balneare v2.0 Inverno Update
 
+/*
+ * notes:
+ * return value 3221226356 after running for a while (allocation error?)
+ * return value 3221225477 after running for a while (out of range error?)
+ */
+
 #ifdef __APPLE__
 	#warning "This program may not run correctly on Apple systems!"
 #endif
