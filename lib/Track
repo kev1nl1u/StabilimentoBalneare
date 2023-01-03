@@ -1,0 +1,105 @@
+#pragma once
+
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <string>
+#include "Group"
+#include "SkatesStock"
+
+using namespace std;
+
+class Track{
+	private:
+		int maxPeople;
+		int people;
+		vector<Group> groups;
+		int nGroups;
+		int newMaintenance;
+		double revenue;
+		double expense;
+		int time;
+		int oldTime;
+	public:
+		SkatesStock pattini;
+		Track(){
+			pattini = SkatesStock(24, 44);
+			maxPeople = 100;
+			people = 0;
+			nGroups = 0;
+			revenue = 0;
+			expense = 0;
+			newMaintenance = 0;
+			oldTime = 0;
+			time = 0;
+		}
+		void updateTime(int t){
+			oldTime = time;
+			time = t;
+			pattini.updateTime(time);
+			calcExpense();
+		}
+		int getPeople(){
+			return people;
+		}
+		int getMax(){
+			return maxPeople;
+		}
+		bool canAddGroup(Group group){
+			if(group.getNPeople()+people > maxPeople && pattini.checkAvailabilityForGroup(group)) return false;
+			else return true;
+		}
+		int addGroup(Group group, int tempo){
+			if(group.getNPeople()+people > maxPeople){
+				return -1;
+			}else{
+				nGroups++;
+				group.setTimeEnter(tempo);
+				groups.push_back(group);
+				people += group.getNPeople();
+				pattini.removeStockForGroup(group);
+				return people;
+			}
+		}
+		int removeGroup(int i){
+			people -= groups[i].getNPeople();
+			pattini.addStockForGroup(getGroup(i));
+			newMaintenance += pattini.getNewMaintenance();
+			pattini.resetNewMaintenance();
+			// calcExpense(); // le spese vengono calcolate ogni volta che si aggiorna il tempo
+			groups.erase(groups.begin()+i);
+			nGroups--;
+			return people;
+		}
+		void setTimeExitOfGroup(int i, int tempo){
+			groups[i].setTimeExit(tempo);
+		}
+		int getNGroups(){
+			return nGroups;
+		}
+		int getPeopleInGroup(int i){
+			return groups[i].getNPeople();
+		}
+		Group getGroup(int i){
+			return groups[i];
+		}
+		double getRevenue(){
+			return revenue;
+		}
+		double getExpense(){
+			return expense;
+		}
+		double calcRevenue(Group g){
+			double timeIn = g.getTimeExit()-g.getTimeEnter();
+			double euro = timeIn*10 / 100;
+			// se il gruppo ha più di 3 persone --> prezzo scontato del 25%
+			if(g.getNPeople() > 3) euro = euro - (euro*25/100);
+			revenue += euro;
+			return euro;
+		}
+		void calcExpense(){
+			expense += newMaintenance*2;
+			newMaintenance = 0;
+			expense += (time - oldTime) * 0.2;
+		}
+};

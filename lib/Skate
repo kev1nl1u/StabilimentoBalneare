@@ -1,0 +1,75 @@
+#pragma once
+
+class Skate{
+	private:
+		int size;
+		int rentalsLeft;
+		bool inMaintenance;
+		bool available;
+		int id;
+		int timeStartMaintenance;
+	public:
+		Skate(){}
+		Skate(int size, int id){
+			this->size = size;
+			rentalsLeft = 10;
+			inMaintenance = false;
+			available = true;
+			this->id = id;
+		}
+		bool isAvailable(){
+			return available;
+		}
+		void setAvailable(bool b){
+			available = b;
+		}
+		int getID(){
+			return id;
+		}
+		void setID(int id){
+			this->id = id;
+		}
+		void setSize(int s){
+			size = s;
+		}
+		int getSize(){
+			return size;
+		}
+		int getRentalsLeft(){
+			return rentalsLeft;
+		}
+		void setRentalsLeft(int n){
+			rentalsLeft = n;
+		}
+		void decreaseRentalsLeft(){
+			rentalsLeft--;
+		}
+		bool isInMaintenance(){
+			return inMaintenance;
+		}
+		bool checkMaintenance(int time){
+			if(rentalsLeft == 0){
+				inMaintenance = true;
+				available = false;
+				timeStartMaintenance = time;
+			}else{
+				rentalsLeft--;
+			}
+			return inMaintenance;
+		}
+		int gettimeStartMaintenance(){
+			return timeStartMaintenance;
+		}
+		void settimeStartMaintenance(int time){
+			timeStartMaintenance = time;
+		}
+		int checkStopMaintenance(int time){
+			if(timeStartMaintenance+15 == time){
+				inMaintenance = false;
+				available = true;
+				rentalsLeft = 10;
+				return 1;
+			}
+			return 0;
+		}
+};

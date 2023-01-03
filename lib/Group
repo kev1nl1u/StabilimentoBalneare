@@ -1,0 +1,57 @@
+#pragma once
+
+#include <iostream>
+#include <vector>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+
+class Group{
+	private:
+		int *size;
+		int nPeople;
+		int timeEnter;
+		int timeExit;
+		int id;
+		int *skateID;
+	public:
+		Group(){}
+		Group(int nPeople, int id){
+			this->nPeople = nPeople;
+			size = (int*)malloc(sizeof(int)*nPeople);
+			for(int i=0; i<nPeople; i++){
+				size[i] = rand()%21+24;
+			}
+			timeEnter = 0;
+			timeExit = 0;
+			this->id = id;
+			skateID = new int[nPeople];
+		}
+		int getID(){
+			return id;
+		}
+		int getNPeople(){
+			return nPeople;
+		}
+		int getSize(int i){
+			return size[i];
+		}
+		void setSkateID(int i, int skID){
+			skateID[i] = skID;
+		}
+		int getSkateID(int i){
+			return skateID[i];
+		}
+		int getTimeEnter(){
+			return timeEnter;
+		}
+		int getTimeExit(){
+			return timeExit;
+		}
+		void setTimeEnter(int t){
+			timeEnter = t;
+		}
+		void setTimeExit(int t){
+			timeExit = t;
+		}
+};

@@ -1,0 +1,114 @@
+#pragma once
+
+#include "Group"
+#include "Skate"
+
+class SkatesStock{
+	private:
+		int sizeStart;
+		int sizeEnd;
+		int time;
+		int newMaintenance;
+	public:
+		Skate **skate;
+		SkatesStock(){}
+		SkatesStock(int sizeStart, int sizeEnd){
+			this->sizeStart = sizeStart;
+			this->sizeEnd = sizeEnd;
+
+			skate = new Skate*[sizeEnd-sizeStart+1];
+			for(int i=0; i<sizeEnd-sizeStart+1; i++){
+				skate[i] = new Skate[6];
+			}
+			for(int i=0; i<sizeEnd-sizeStart+1; i++){
+				for(int j=0; j<6; j++){
+					skate[i][j] = Skate(i+sizeStart, j);
+				}
+			}
+
+			newMaintenance = 0;
+		}
+		int getStockOfSize(int i){
+			int stock;
+			for(int j=0; j<6; j++){
+				if(skate[i-sizeStart][j].isAvailable()){
+					stock++;
+				}
+			}
+			return stock;
+		}
+		int getSizeStart(){
+			return sizeStart;
+		}
+		int getSizeEnd(){
+			return sizeEnd;
+		}
+		int getNTaglie(){
+			return sizeEnd-sizeStart+1;
+		}
+		void addStock(int skSize, int skID){
+			skate[skSize-sizeStart][skID].setAvailable(true);
+			if(skate[skSize-sizeStart][skID].checkMaintenance(time)) incNewMaintenance(); // add new maintenance skates counter
+		}
+		void incNewMaintenance(){
+			newMaintenance++;
+		}
+		int getNewMaintenance(){
+			return newMaintenance;
+		}
+		void resetNewMaintenance(){
+			newMaintenance = 0;
+		}
+		int removeStock(int size){
+			int j=0;
+			while(!skate[size-sizeStart][j].isAvailable()){
+				j++;
+			}
+			skate[size-sizeStart][j].setAvailable(false);
+			return j; // returns skate id
+		}
+		bool checkAvailabilityForGroup(Group g){
+			int *tempstock = new int[sizeEnd-sizeStart+1];
+			for(int i=0; i<sizeEnd-sizeStart+1; i++){
+				tempstock[i] = getStockOfSize(i+sizeStart);
+			}
+			for(int i=0; i<g.getNPeople(); i++){
+				if(tempstock[g.getSize(i)-sizeStart] == 0){
+					return false;
+				}
+				tempstock[g.getSize(i)-sizeStart]--;
+			}
+			return true;
+		}
+		int getAvailableSkateID(int size){
+			int j=0;
+			while(!skate[size-sizeStart][j].isAvailable()){
+				j++;
+			}
+			return j;
+		}
+		void removeStockForGroup(Group g){
+			for(int i=0; i<g.getNPeople(); i++){
+				g.setSkateID(i, removeStock(g.getSize(i)));
+			}
+		}
+		void addStockForGroup(Group g){
+			for(int i=0; i<g.getNPeople(); i++){
+				addStock(g.getSize(i), g.getSkateID(i));
+			}
+		}
+		Skate getSkate(int size, int id){
+			return skate[size-sizeStart][id];
+		}
+		void updateTime(int time){
+			this->time = time;
+			// check skates stop maintenance
+			for(int i=0; i<sizeEnd-sizeStart+1; i++){
+				for(int j=0; j<6; j++){
+					if(skate[i][j].isInMaintenance()){
+						skate[i][j].checkStopMaintenance(time);
+					}
+				}
+			}
+		}
+};
