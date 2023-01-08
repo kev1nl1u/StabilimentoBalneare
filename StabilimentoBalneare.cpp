@@ -1,4 +1,4 @@
-// Stabilimento Balneare v2.0 Inverno Update
+// "Stabilimento Balneare" v2.0 Winter Update
 
 /***** WARNINGS *****/
 #ifdef __APPLE__
@@ -211,10 +211,10 @@ int main(){
 			logString += ")\n";
 		}
 		// add to log rentalsLeft of all skates
-		logString += "\n\tPattini: \n";
+		logString += "\n\tSkates rental left: \n";
 		// for each size
 		for(int i = iceRink.skates.getSizeStart(); i<=iceRink.skates.getSizeEnd(); i++){
-			logString += "\tSize: " + to_string(i) + "\t";
+			logString += "\tSize " + to_string(i) + ":\t";
 			// for each skate of that size
 			for(int j=0; j<iceRink.skates.skateSize->getNSkates(); j++){
 				// if the skate is in maintenance
@@ -262,7 +262,7 @@ int main(){
 		cout << statsString;
 
 		// print commands
-		cout << "ESC to quit" << endl << "F1 to print log in console\t\t" << boolToOnOff(log) << endl << "F2 to print log on\t\t" << boolToOnOff(logOnFile) << endl << "F3 to pause/resume" << endl << endl;
+		cout << "ESC to quit" << endl << "F1 to print log in console\t\t" << boolToOnOff(log) << endl << "F2 to print log on\t\t\t" << boolToOnOff(logOnFile) << endl << "F3 to pause/resume" << endl << endl;
 		
 		// print log
 		logPrinted = false;

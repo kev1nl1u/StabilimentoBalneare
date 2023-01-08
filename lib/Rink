@@ -79,7 +79,7 @@ class Rink{
 		// calculate revenue
 		double calcRevenue(Group g){
 			// revenue = time spent in the track * 0.10
-			return (g.getTimeExit() - g.getTimeEnter())*REVENUE_PER_MINUTE;
+			return (g.getTimeExit() - g.getTimeEnter())*REVENUE_PER_MINUTE*g.getNPeople();
 		}
 		// if a group can be added to the track
 		bool canAddGroup(Group group){
@@ -113,12 +113,12 @@ class Rink{
 		 * - checks if the skates need maintenance
 		 * NOTE: the time the group exited the track is updated in the main for log purposes (add to log the revenue from the group)
 		 */
-		int removeGroup(int i){
-			people -= groups[i].getNPeople();
+		int removeGroup(int index){
+			people -= groups[index].getNPeople();
 			nGroups--;
-			revenue += calcRevenue(groups[i]);
-			skates.addStockForGroup(groups[i]);
-			groups.erase(groups.begin()+i);
+			revenue += calcRevenue(groups[index]);
+			skates.addStockForGroup(groups[index]);
+			groups.erase(groups.begin()+index);
 			return people;
 		}
 };

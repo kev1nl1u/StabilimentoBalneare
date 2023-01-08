@@ -5,6 +5,8 @@
 #include <vector>
 using namespace std;
 
+#define TIME_MAINTENANCE 15
+
 // struct for one skate
 typedef struct{
 	int rentalsLeft; // rentals left before maintenance
@@ -119,7 +121,7 @@ class Skate{
 		// check if a skate has finished maintenance
 		void checkStopMaintenanceOf(int index){
 			// if 15 minutes have passed --> stop maintenance and set available
-			if(getTimeStartMaintenanceOf(index)+15 == time){
+			if(getTimeStartMaintenanceOf(index)+TIME_MAINTENANCE == time){
 				skates[index].inMaintenance = false;
 				skates[index].available = true;
 				// reset rentals left
