@@ -1,5 +1,6 @@
 #pragma once
 
+// libraries
 #include "Group"
 #include "SkateSize"
 #include <iostream>
@@ -9,13 +10,15 @@ using namespace std;
 // stock of skates
 class Stock{
 	private:
-		int sizeStart;
-		int sizeEnd;
+		int sizeStart; // smallest size
+		int sizeEnd; // biggest size
 		int nSkates; // number of skates for size
 		int rentals; // number of rentals
-		int time;
+		int time; // current time
 	public:
-		Skate *scorte;
+		// array of skates by size
+		Skate *skateSize;
+		// constructor
 		Stock(){}
 		Stock(int sizeStart, int sizeEnd, int nSkates, int rentals){
 			this->sizeStart = sizeStart;
@@ -23,12 +26,13 @@ class Stock{
 			this->nSkates = nSkates;
 			this->rentals = rentals;
 			// create array of skates of size*stock
-			scorte = new Skate[sizeEnd-sizeStart+1];
+			skateSize = new Skate[sizeEnd-sizeStart+1];
 			for(int i=0; i<getNTaglie(); i++){
-				scorte[i] = Skate(i+sizeStart, nSkates, rentals);
+				skateSize[i] = Skate(i+sizeStart, nSkates, rentals);
 			}
 			time = 0;
 		}
+		/***** GETTERS *****/
 		int getSizeStart(){
 			return sizeStart;
 		}
@@ -39,67 +43,62 @@ class Stock{
 			return sizeEnd-sizeStart+1;
 		}
 		int getScorte(int size){
-			return scorte[size-sizeStart].availableSkatesID.size();
+			return skateSize[size-sizeStart].availableSkatesID.size();
 		}
-		// get scorte of another array of skates
+		// get skateSize of another array of skates
 		int getScorte(Skate *s, int size){
 			return s[size-sizeStart].availableSkatesID.size();
 		}
+		/********************/
+		// check if there are enough skates for a group
 		bool checkAvailabilityForGroup(Group g){
-			// make a copy of the array of skates
+			// make a copy of the array of skates and subtract the skates that would be used by the group
 			Skate *tempScorte = new Skate[getNTaglie()];
-			for(int i=0; i<getNTaglie(); i++){
-				tempScorte[i] = scorte[i];
-			}
+			for(int i=0; i<getNTaglie(); i++) tempScorte[i] = skateSize[i];
+
 			for(int i=0; i<g.getNPeople(); i++){
-				if(getScorte(tempScorte, g.getSize(i)) == 0){
-					return false;
-				}
+				if(getScorte(tempScorte, g.getSize(i)) == 0) return false;
 				tempScorte[g.getSize(i)-sizeStart].useSkate();
 			}
 			delete[] tempScorte;
 			return true;
 		}
+		// remove skates from stock for a group
 		void removeStockForGroup(Group g){ // group enters --> remove Stock
 			if(checkAvailabilityForGroup(g)) // double checks
 				for(int i=0; i<g.getNPeople(); i++)
-					g.setSkateID(i, scorte[g.getSize(i)-sizeStart].useSkate());
+					g.setSkateID(i, skateSize[g.getSize(i)-sizeStart].useSkate());
 			else{
 				cout << "Error: no skates available for group " << g.getID() << endl;
 				exit(1);
 			}
 		}
-		void addStockForGroup(Group g){
-			for(int i=0; i<g.getNPeople(); i++){
-				if(i>=g.getNPeople())
-					break;
-				scorte[g.getSize(i)-sizeStart].deuseSkate(g.getSkateID(i));
-				//cout << "Skate " << g.getSize(i) << "ID" << g.getSkateID(i) << " returned" << endl;
-			}
-			//cout << endl;
+		// add skates to stock for a group
+		void addStockForGroup(Group g){ // group leaves --> add Stock
+			// add skates to stock for each person in the group
+			for(int i=0; i<g.getNPeople(); i++) skateSize[g.getSize(i)-sizeStart].deuseSkate(g.getSkateID(i));
 		}
+		// update time
 		void updateTime(int time){
 			this->time = time;
-			for(int i=0; i<getNTaglie(); i++){
-				scorte[i].updateTime(time);
-			}
+			// update time for each size
+			for(int i=0; i<getNTaglie(); i++) skateSize[i].updateTime(time);
 		}
+		// calculate expenses from the maintenance of the skates
 		double calcExpense(){
 			double newExpense=0;
-			for(int i=0; i<getNTaglie(); i++){
-				newExpense += scorte[i].getNewExpense();
-			}
+			for(int i=0; i<getNTaglie(); i++) newExpense += skateSize[i].getNewExpense();
 			return newExpense;
 		}
 
 
-
-		void print(){
-			//cout << "Stock: " << endl;
-			for(int i=0; i<getNTaglie(); i++){
-				cout << "Size: " << i+sizeStart << endl;
-				scorte[i].print();
-				cout << endl;
+		// << overload
+		friend ostream& operator<<(ostream& os, Stock& s){
+			os << "Stock: " << endl;
+			for(int i = 0; i < s.getNTaglie(); i++){
+				os << s.skateSize[i] << endl;
+				os << endl;
 			}
+			return os;
 		}
 };

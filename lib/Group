@@ -1,32 +1,29 @@
 #pragma once
 
-#include <iostream>
-#include <vector>
-#include <stdlib.h>
-#include <time.h>
-using namespace std;
-
+// class for one group
 class Group{
 	private:
-		int *taglia;
-		int nPersone;
-		int tEntrata;
-		int tUscita;
-		int id;
-		int *skateID;
+		int *size; // sizes for each person
+		int nPeople; // number of people in the group
+		int tEnter; // time of entry
+		int tExit; // time of exit
+		int id; // id of the group
+		int *skateID; // ID of skates used by each person
 	public:
+		// constructor
 		Group(){}
-		Group(int nPersone, int id){
-			this->nPersone = nPersone;
-			taglia = (int*)malloc(sizeof(int)*nPersone);
-			for(int i=0; i<nPersone; i++){
-				taglia[i] = rand()%21+24;
+		Group(int nPeople, int id){
+			this->nPeople = nPeople;
+			size = (int*)malloc(sizeof(int)*nPeople);
+			for(int i=0; i<nPeople; i++){
+				size[i] = rand()%21+24;
 			}
-			skateID = (int*)malloc(sizeof(int)*nPersone);
-			tEntrata = 0;
-			tUscita = 0;
+			skateID = (int*)malloc(sizeof(int)*nPeople);
+			tEnter = 0;
+			tExit = 0;
 			this->id = id;
 		}
+		/****** GETTERS & SETTERS ******/
 		void setSkateID(int i, int id){
 			skateID[i] = id;
 		}
@@ -37,21 +34,21 @@ class Group{
 			return id;
 		}
 		int getNPeople(){
-			return nPersone;
+			return nPeople;
 		}
 		int getSize(int i){
-			return taglia[i];
+			return size[i];
 		}
 		int getTimeEnter(){
-			return tEntrata;
+			return tEnter;
 		}
 		int getTimeExit(){
-			return tUscita;
+			return tExit;
 		}
 		void setTimeEnter(int t){
-			tEntrata = t;
+			tEnter = t;
 		}
 		void setTimeExit(int t){
-			tUscita = t;
+			tExit = t;
 		}
 };

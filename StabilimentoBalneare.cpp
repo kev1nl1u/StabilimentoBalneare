@@ -1,5 +1,6 @@
 // Stabilimento Balneare v2.0 Inverno Update
 
+/***** WARNINGS *****/
 #ifdef __APPLE__
 	#warning "This program may not run correctly on Apple systems!"
 #endif
@@ -7,6 +8,7 @@
 	#warning "This program may not run correctly on Linux systems!"
 #endif
 
+/***** LIBRARIES *****/
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
@@ -14,61 +16,73 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include <sstream>
+#include <sstream>		// std::ostringstream
 #include <iomanip>      // std::setprecision
 #include "lib/Group"
-#include "lib/Track"
+#include "lib/Rink"
 
-#define MAX_GRUPPI_GENERATI 20
-#define MAX_PERSONE_IN_GRUPPO 10
+/***** CONSTANTS *****/
+#define MAX_GROUPS_GENERATED 15
+#define MAX_PEOPLE_IN_GROUP 10
+#define SKATE_SIZE_MIN 24
+#define SKATE_SIZE_MAX 44
+#define ONE_SECOND_IN_SIMULATION_MINUTE 1
+#define UPDATE_TIMEOUT_MS 5000
 
 using namespace std;
 
+/***** VARIABLES *****/
+// variable used for style and log purposes
+bool style_printEndline, log, logOnFile, logPrinted, logPrintedOnFile;
+string logString, statsString;
+ofstream logFile;
+
+/***** FUNCTIONs *****/
+// bool true/false to string ON/OFF
 string boolToOnOff(bool b){
 	if(b) return "ON";
 	else return "OFF";
 }
-
+// double to string with 2 decimal places
 string roundDoubleToString(double n) {
     ostringstream s;
     s << std::fixed << std::setprecision(2) << n;
     return s.str();
 }
-
-// style var
-bool style_printEndline, log, logOnFile, logPrinted, logPrintedOnFile;
-string logString, statsString;
-ofstream logFile;
-
+// DETECT KEY PRESSES
+// detect ESC key (exit program)
 void detectEsc(){
 	if (GetAsyncKeyState(VK_ESCAPE)){
       		if(!style_printEndline){ cout << endl; }
 		cout << "Exiting..." << endl; exit(0);
 	}
 }
+// detect F1 key (print log in console)
 void detectF1(){
 	if (GetAsyncKeyState(VK_F1)){
 		log = !log;
 		if(!style_printEndline && !log){ cout << endl; style_printEndline = true; }
-		if(log) cout << "Log in console attivato" << endl; else cout << "Log in console disattivato" << endl;
+		if(log) cout << "Log in console enabled" << endl; else cout << "Log in console disabled" << endl;
 		if(log && !logPrinted){ cout << logString; logPrinted = true; }
 	}
 }
+// detect F2 key (print log on file)
 void detectF2(){
 	if (GetAsyncKeyState(VK_F2)){
 		logOnFile = !logOnFile;
 		if(!style_printEndline){ cout << endl; style_printEndline = true; }
-		if(logOnFile) cout << "Stampa log su file" << endl; else cout << "Non stampare log su file" << endl;
+		if(logOnFile) cout << "Log on file enabled" << endl; else cout << "Log on file disabled" << endl;
 		if(log && !logPrintedOnFile){
 			logFile << endl << "-----" << endl << statsString << logString;
 			logPrintedOnFile = true;
 		}
 	}
 }
+// detect F3 key (pause/resume program)
 void detectF3(){
 	if (GetAsyncKeyState(VK_F3)){
 		if(!style_printEndline){ cout << endl; style_printEndline = true; }
-		cout << "Pausa" << endl;
+		cout << "Pause" << endl;
 		fflush(stdin);
 		Sleep(50);
 		while(true){
@@ -80,123 +94,156 @@ void detectF3(){
 			Sleep(50);
 			if (GetAsyncKeyState(VK_F3)) break;
 		}
-		cout << "Riprendi" << endl;
+		cout << "Resume" << endl;
 	}
 }
 
+/***** MAIN *****/
 int main(){
 
 	srand(time(NULL));
 	
-	vector<Group> coda; // coda delle persone
+	// queue of groups waiting to enter the track
+	vector<Group> queue;
 
-	// inizializza pista
-	Track pista = Track();
+	// create ice rink
+	Rink iceRink = Rink();
 
-	int tempo = 0;
-	log = true;
-	logOnFile = true;
-	int id = 0;
-	
-	logFile.open("log.txt", ios::out);
+	// variables
+	int time = 0; // time
+	log = true; // print log in console
+	logOnFile = true; // print log on file
+	int id = 0; // id of the group generated
+	logFile.open("log.txt", ios::out); // open log file
 
-	// while user input != esc
+	// while user doesn't press ESC
 	while(true){
 		
-		Sleep(50); // troppa roba da stampare, 50s di sleep per far ragionare il pc
+		Sleep(50); // too much stuff to print, cpu needs to think a bit
 
+		// reset string for log and stats
 		logString = "";
 		statsString = "";
 
 		logString += "LOG: \n";
 
-		// controlla se ci sono gruppi in uscita
-		for(int i=0; i<pista.getNGroups(); i++){
-			if(rand()%2){ // random 1 = gruppo esce
-				pista.gruppi[i].setTimeExit(tempo);
-				logString += "- OUT gruppo ID" + to_string(pista.getGroup(i).getID()) + " dalla pista (" + to_string(pista.getPeopleInGroup(i)) + " persone) ";
-				// print taglie e id
-				logString += "(TAGLIA ID: ";
-				for(int j=0; j<pista.getGroup(i).getNPeople(); j++){
+		// check if there are groups that have to exit
+		for(int i=0; i<iceRink.getNGroups(); i++){
+			// random 1 = group exits
+			if(rand()%2){
+				iceRink.groups[i].setTimeExit(time); // set time of exit
+
+				// update log
+				logString += "- OUT group ID" + to_string(iceRink.getGroup(i).getID()) + " from rink (-" + to_string(iceRink.getPeopleInGroup(i)) + " people) ";
+				// add to log the skate returned from each person in the group
+				logString += "(SIZE/ID: ";
+				for(int j=0; j<iceRink.getGroup(i).getNPeople(); j++){
 					if(j!=0) logString += "; ";
-					logString += to_string(pista.getGroup(i).getSize(j)) + " ID" + to_string(pista.getGroup(i).getID());
+					logString += to_string(iceRink.getGroup(i).getSize(j)) + " ID" + to_string(iceRink.getGroup(i).getID());
 				}
-				logString += ") - TimeIn: " + to_string(pista.getGroup(i).getTimeEnter()) + "-" + to_string(pista.getGroup(i).getTimeExit()) + " ";
-				logString += "+" + roundDoubleToString(pista.calcRevenue(pista.getGroup(i))) + " euro\n";
-				pista.removeGroup(i);
+				// time spent in the rink
+				logString += ") - TimeIn: " + to_string(iceRink.getGroup(i).getTimeEnter()) + "-" + to_string(iceRink.getGroup(i).getTimeExit()) + " ";
+				logString += "+" + roundDoubleToString(iceRink.calcRevenue(iceRink.getGroup(i))) + " euro\n";
+				// remove group from rink
+				iceRink.removeGroup(i);
+				// decrement i because the vector has been modified
 				i--;
 			}
 		}
 
-		// genera gruppi
-		for(int i=0; i<rand()%MAX_GRUPPI_GENERATI+1; i++){
-			int nPeopleInGroup = rand()%MAX_PERSONE_IN_GRUPPO+1; // genera numero casuale di persone
+		// generate new groups
+		for(int i=0; i<rand()%MAX_GROUPS_GENERATED+1; i++){
+			// random number of people in the group
+			int nPeopleInGroup = rand()%MAX_PEOPLE_IN_GROUP+1;
+			// create group
 			Group tempGroup = Group(nPeopleInGroup, id);
-			id++;
-			logString += "- NEW gruppo ID" + to_string(tempGroup.getID()) + " di " + to_string(nPeopleInGroup) + " persone\n";
-			coda.push_back(tempGroup); // push in coda
-			logString += "- ADD gruppo ID" + to_string(tempGroup.getID()) +" alla coda\n";
+			id++; // increment id
+			// update log
+			logString += "- NEW group ID" + to_string(tempGroup.getID()) + " of " + to_string(nPeopleInGroup) + " people\n";
+			// push in queue
+			queue.push_back(tempGroup);
+			// update log
+			logString += "- ADD group ID" + to_string(tempGroup.getID()) +" to queue\n";
 		}
 
-		// controlla che ci sia spazio nella pista per i gruppi in coda
-		for(int i=0; i<coda.size(); i++){
-			if(pista.canAddGroup(coda[i]) && pista.pattini.checkAvailabilityForGroup(coda[i])){
-				pista.pattini.removeStockForGroup(coda[i]);
-				logString += "- AVAIL taglie gruppo ID" + to_string(coda[i].getID()) + " in coda disponibili (";
-				for(int j=0; j<coda[i].getNPeople(); j++){
+		// check if a group can enter the rink
+		for(int i=0; i<queue.size(); i++){
+			// if there is enough space in the rink and there are enough skates
+			if(iceRink.canAddGroup(queue[i]) && iceRink.skates.checkAvailabilityForGroup(queue[i])){
+				// remove skates from stock
+				iceRink.skates.removeStockForGroup(queue[i]);
+				// update log
+				logString += "- AVAIL skates for group ID" + to_string(queue[i].getID()) + " in queue (";
+				for(int j=0; j<queue[i].getNPeople(); j++){
 					if(j!=0) logString += "; ";
-					logString += to_string(coda[i].getSize(j));
+					logString += to_string(queue[i].getSize(j));
 				}
 				logString += ")\n";
-				coda[i].setTimeEnter(tempo);
-				pista.addGroup(coda[i]);
-				logString += "- IN gruppo ID" + to_string(coda[i].getID()) + " (" + to_string(coda[i].getNPeople()) + " persone) (coda: " + to_string(coda.size()) + " gruppo) ";
-				// print taglie e id
-				logString += "(TAGLIA ID: ";
-				for(int j=0; j<coda[i].getNPeople(); j++){
+				// set time of entry
+				queue[i].setTimeEnter(time);
+				// add group to rink
+				iceRink.addGroup(queue[i]);
+				// update log
+				logString += "- IN group ID" + to_string(queue[i].getID()) + " (+" + to_string(queue[i].getNPeople()) + " people) (queue: " + to_string(queue.size()) + " group(s)) ";
+				// add to log the skate taken by each person in the group
+				logString += "(SIZE/ID: ";
+				for(int j=0; j<queue[i].getNPeople(); j++){
 					if(j!=0) logString += "; ";
-					logString += to_string(coda[i].getSize(j)) + " ID" + to_string(coda[i].getSkateID(j));
+					logString += to_string(queue[i].getSize(j)) + " ID" + to_string(queue[i].getSkateID(j));
 				}
 				logString += ")\n";
-				coda.erase(coda.begin()+i);
+				// remove group from queue
+				queue.erase(queue.begin()+i);
+				// decrement i because the vector has been modified
 				i--;
-			}/*else if(!pista.pattini.checkAvailabilityForGroup(coda[i])){
-				logString += "- Taglie gruppo {" + to_string(coda[i].getID()) + "} della coda non disponibili (";
-				for(int j=0; j<coda[i].getNPeople(); j++){
-					if(j!=0) logString += "; ";
-					logString += to_string(coda[i].getSize(j));
-				}
-				logString += ")\n";
-			}else if(!pista.canAddGroup(coda[i])){
-				logString += "- Gruppo {" + to_string(coda[i].getID()) + "} della coda non entrato (pista piena)\n";
-			}*/
+			}
 		}
 
-		// stampa gruppi in pista
-		logString += "- PISTA gruppi: \n";
-		for(int i=0; i<pista.getNGroups(); i++){
-			logString += "\tID" + to_string(pista.getGroup(i).getID()) + " - " + to_string(pista.getPeopleInGroup(i)) + " persone; ";
-			// print taglie e id
-			logString += "(TAGLIA ID: ";
-			for(int j=0; j<pista.getGroup(i).getNPeople(); j++){
+		// update log with groups in rink
+		logString += "- Groups in rink: \n";
+		for(int i=0; i<iceRink.getNGroups(); i++){
+			logString += "\tID" + to_string(iceRink.getGroup(i).getID()) + " - " + to_string(iceRink.getPeopleInGroup(i)) + " people; ";
+			logString += "(SIZE/ID: ";
+			for(int j=0; j<iceRink.getGroup(i).getNPeople(); j++){
 				if(j!=0) logString += "; ";
-				logString += to_string(pista.getGroup(i).getSize(j)) + "ID" + to_string(pista.getGroup(i).getSkateID(j));
+				logString += to_string(iceRink.getGroup(i).getSize(j)) + "ID" + to_string(iceRink.getGroup(i).getSkateID(j));
 			}
 			logString += ")\n";
 		}
+		// add to log rentalsLeft of all skates
+		logString += "\n\tPattini: \n";
+		// for each size
+		for(int i = iceRink.skates.getSizeStart(); i<=iceRink.skates.getSizeEnd(); i++){
+			logString += "\tSize: " + to_string(i) + "\t";
+			// for each skate of that size
+			for(int j=0; j<iceRink.skates.skateSize->getNSkates(); j++){
+				// if the skate is in maintenance
+				if(iceRink.skates.skateSize[i-iceRink.skates.getSizeStart()].isInMaintenance(j)){
+					// show M
+					logString += " M";
+				}else{
+					// else show rentals left before maintenance
+					char buffer[3];
+					sprintf(buffer, "%2d", iceRink.skates.skateSize[i-iceRink.skates.getSizeStart()].getRentalsLeftOf(j));
+					logString += buffer;
+				}
+				logString += "    ";
+			}
+			logString += "\n";
+		}
 
-		// calcola e stampa stats
-		statsString += "Tempo: " + to_string(tempo) + " minuti\n\n";
-		statsString += "Pista: " + to_string(pista.getPeople()) + " / " + to_string(pista.getMax()) + "\n";
-		statsString += "composto da " + to_string(pista.getNGroups()) + " gruppi\n\n";
-		statsString += "Pattini: \n";
+		// update stats
+		statsString += "Time: " + to_string(time) + " minutes\n\n";
+		statsString += "Rink: " + to_string(iceRink.getPeople()) + " / " + to_string(iceRink.getMax()) + "\n";
+		statsString += "in " + to_string(iceRink.getNGroups()) + " groups\n\n";
+		statsString += "Skates status: \n";
 		int boxCount = 1;
-		for(int i = pista.pattini.getSizeStart(); i<=pista.pattini.getSizeEnd(); i++){
-			if(boxCount%2) statsString += "\t" + to_string(i) + "\t" + to_string(pista.pattini.getScorte(i)) + " / 6\t\t";
-			else statsString += "\t" + to_string(i) + "\t" + to_string(pista.pattini.getScorte(i)) + " / 6\t";
-			for(int j=0; j<pista.pattini.scorte->getNSkates(); j++){
-				if(pista.pattini.scorte[i-pista.pattini.getSizeStart()].isInMaintenance(j)) statsString += "M";
-				else if(pista.pattini.scorte[i-pista.pattini.getSizeStart()].isAvailable(j)) statsString += "X";
+		for(int i = iceRink.skates.getSizeStart(); i<=iceRink.skates.getSizeEnd(); i++){
+			if(boxCount%2) statsString += "\t" + to_string(i) + "\t" + to_string(iceRink.skates.getScorte(i)) + " / 6\t";
+			else statsString += "\t" + to_string(i) + "\t" + to_string(iceRink.skates.getScorte(i)) + " / 6\t";
+			for(int j=0; j<iceRink.skates.skateSize->getNSkates(); j++){
+				if(iceRink.skates.skateSize[i-iceRink.skates.getSizeStart()].isInMaintenance(j)) statsString += "M";
+				else if(iceRink.skates.skateSize[i-iceRink.skates.getSizeStart()].isAvailable(j)) statsString += "X";
 				else statsString += "O";
 			}
 			if(boxCount%2) statsString += "\t\t";
@@ -205,34 +252,41 @@ int main(){
 		}
 		if((boxCount-1)%2) statsString += "\n";
 		statsString += "\n";
-		int personeInCoda = 0;
-		for(int i=0; i<coda.size(); i++){
-			personeInCoda += coda[i].getNPeople();
-		}
-		statsString += "Coda: " + to_string(coda.size()) + " gruppi (" + to_string(personeInCoda) + ")\n\n";
-		statsString += "FATTURATO: " + roundDoubleToString(pista.getRevenue()) + " euro\n";
-		statsString += "SPESE: " + roundDoubleToString(pista.getExpense()) + " euro\n\n";
+		int nPeopleInQueue = 0;
+		for(int i=0; i<queue.size(); i++) nPeopleInQueue += queue[i].getNPeople();
+		statsString += "Queue: " + to_string(queue.size()) + " groups (" + to_string(nPeopleInQueue) + " people)\n\n";
+		statsString += "REVENUE: " + roundDoubleToString(iceRink.getRevenue()) + " euro\n";
+		statsString += "EXPENSES: " + roundDoubleToString(iceRink.getExpense()) + " euro\n\n";
 
+		// print stats
 		cout << statsString;
 
-		cout << "ESC per uscire" << endl << "F1 per stampare log su console\t\t" << boolToOnOff(log) << endl << "F2 per stampare log su file\t\t" << boolToOnOff(logOnFile) << endl << "F3 per pausa/riprendi" << endl << endl;
-
+		// print commands
+		cout << "ESC to quit" << endl << "F1 to print log in console\t\t" << boolToOnOff(log) << endl << "F2 to print log on\t\t" << boolToOnOff(logOnFile) << endl << "F3 to pause/resume" << endl << endl;
+		
+		// print log
 		logPrinted = false;
 		if(log){ cout << logString; logPrinted = true; }
 		logPrintedOnFile = false;
 		if(logOnFile){ logFile << endl << "-----" << endl << statsString << logString; logPrintedOnFile = true; }
 		
 		style_printEndline = false;
+
+		// wait 5 seconds (1 second = 5 minutes in the simulation)
+		// check for input
 		for(int i=0; i<20; i++){
         	detectEsc();
 			detectF1();
 			detectF2();
 			detectF3();
-			Sleep(250);
+			Sleep(UPDATE_TIMEOUT_MS/20);
 		}
 
-		tempo+=5;
-		pista.updateTime(tempo);
+		// update time
+		time+=5*ONE_SECOND_IN_SIMULATION_MINUTE;
+		iceRink.updateTime(time);
+
+		// clear screen
 		system("cls");
     }
     

@@ -1,0 +1,124 @@
+#pragma once
+
+// libraries
+#include <iostream>
+#include <vector>
+#include "Group"
+#include "SkatesStock"
+
+#define MAX_PEOPLE 100
+#define EXPENSE_PER_MINUTE 0.20
+#define REVENUE_PER_MINUTE 0.10
+#define SKATE_START_SIZE 24
+#define SKATE_END_SIZE 44
+#define NUMBER_OF_SKATES 6
+#define NUMBER_OF_USAGE_BEFORE_MAINTENANCE 10
+
+using namespace std;
+
+// class Skating Track
+class Rink{
+	private:
+		int maxPeople; // max number of people in the track
+		int people; // number of people in the track
+		int nGroups; // number of groups in the track
+		double revenue; // revenue of the track
+		double expense; // expense of the track
+		int time; // current time
+		int oldTime; // old time
+	public:
+		vector<Group> groups; // vector of groups in the track
+		Stock skates = Stock(SKATE_START_SIZE, SKATE_END_SIZE, NUMBER_OF_SKATES, NUMBER_OF_USAGE_BEFORE_MAINTENANCE); // object with stock of skates - parameters size start, size end, number of stock, number of usage before maintenance
+		// constructor
+		Rink(){
+			maxPeople = MAX_PEOPLE;
+			people = 0;
+			nGroups = 0;
+			revenue = 0;
+			expense = 0;
+			time = 0;
+			oldTime = 0;
+		}
+		/***** GETTERS *****/
+		int getPeople(){
+			return people;
+		}
+		int getMax(){
+			return maxPeople;
+		}
+		int getNGroups(){
+			return nGroups;
+		}
+		int getPeopleInGroup(int i){
+			return groups[i].getNPeople();
+		}
+		Group getGroup(int i){
+			return groups[i];
+		}
+		double getExpense(){
+			return expense;
+		}
+		double getRevenue(){
+			return revenue;
+		}
+		/********************/
+		// update time
+		void updateTime(int t){
+			oldTime = time;
+			time = t;
+			// update time of object skate in the track
+			skates.updateTime(time);
+			// update expense
+			calcExpense();
+		}
+		// calculate expense
+		void calcExpense(){
+			// expense = expense per minute * time passed + expense from  maintenance of skates
+			expense += EXPENSE_PER_MINUTE*(double)(time-oldTime) + skates.calcExpense();
+		}
+		// calculate revenue
+		double calcRevenue(Group g){
+			// revenue = time spent in the track * 0.10
+			return (g.getTimeExit() - g.getTimeEnter())*REVENUE_PER_MINUTE;
+		}
+		// if a group can be added to the track
+		bool canAddGroup(Group group){
+			if(group.getNPeople()+people > maxPeople) return false;
+			else return true;
+		}
+		/* when a group is added to the track:
+		 * - the time the group entered the track is updated
+		 * - the number of groups in the track is updated
+		 * - the group is added to the vector of groups
+		 * - the number of people in the track is updated
+		 * - the usage left before maintenance of the skates is decreased
+		 * NOTE: if the group cannot be added because of too many people, the function returns -1
+		 */
+		int addGroup(Group group){
+			if(group.getNPeople()+people > maxPeople){
+				return -1;
+			}else{
+				group.setTimeEnter(time);
+				nGroups++;
+				groups.push_back(group);
+				people += group.getNPeople();
+				return people;
+			}
+		}
+		/* when a group is removed from the track:
+		 * - the number of people in the track is updated
+		 * - the number of groups in the track is updated
+		 * - the revenue is updated
+		 * - the group is removed from the vector of groups
+		 * - checks if the skates need maintenance
+		 * NOTE: the time the group exited the track is updated in the main for log purposes (add to log the revenue from the group)
+		 */
+		int removeGroup(int i){
+			people -= groups[i].getNPeople();
+			nGroups--;
+			revenue += calcRevenue(groups[i]);
+			skates.addStockForGroup(groups[i]);
+			groups.erase(groups.begin()+i);
+			return people;
+		}
+};

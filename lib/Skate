@@ -1,33 +1,37 @@
 #pragma once
 
+// libraries
 #include <iostream>
 #include <vector>
 using namespace std;
 
+// struct for one skate
 typedef struct{
-	int rentalsLeft;
-	bool inMaintenance;
-	bool available;
-	int timeStartMaintenance;
-	int ID;
+	int rentalsLeft; // rentals left before maintenance
+	bool inMaintenance; // if in maintenance
+	bool available; // if available
+	int timeStartMaintenance; // time when maintenance started
+	int ID; // ID of the skate (position in the array of all skates)
 } OneSkate;
 
 // skates based on size
 class Skate{
 	private:
-		int size;
-		int rentals;
-		int nSkates;
-		int time;
-		double newExpense;
-		vector<OneSkate> skates;
+		int size; // size of the skates
+		int rentals; // number of rentals available when new
+		int nSkates; // number of skates available originally
+		int time; // current time
+		double newExpense; // expense for maintenance
+		vector<OneSkate> skates; // array of skates
 	public:
-		vector<int> availableSkatesID;
+		vector<int> availableSkatesID; // array of available skates
+		// constructor
 		Skate(){}
 		Skate(int size, int nSkates, int rentals){
 			this->size = size;
 			this->rentals = rentals;
 			this->nSkates = nSkates;
+			// initialize array of skates
 			skates = vector<OneSkate>(nSkates);
 			for(int i=0; i<nSkates; i++){
 				skates[i].rentalsLeft = rentals;
@@ -35,11 +39,21 @@ class Skate{
 				skates[i].available = true;
 				skates[i].timeStartMaintenance = 0;
 				skates[i].ID = i;
-				availableSkatesID.push_back(i);
+				availableSkatesID.push_back(i); // every skate is available at the beginning
 			}
 			time = 0;
 			newExpense = 0;
 		}
+		// copy constructor
+		Skate(const Skate &s){
+			size = s.size;
+			rentals = s.rentals;
+			nSkates = s.nSkates;
+			time = s.time;
+			skates = s.skates;
+			availableSkatesID = s.availableSkatesID;
+		}
+		/***** GETTERS & SETTERS & MINOR UTILITIES *****/
 		int getID(int index){
 			return skates[index].ID;
 		}
@@ -67,70 +81,83 @@ class Skate{
 		bool isInMaintenance(int i){
 			return skates[i].inMaintenance;
 		}
+		int getTimeStartMaintenanceOf(int i){
+			return skates[i].timeStartMaintenance;
+		}
+		/*******************************************/
+		// use a skate
 		int useSkate(){
-			// set not available in skates
 			int usedID = availableSkatesID[0];
+			// set not available in skates
 			setAvailable(usedID, false);
+			// decrease rentals left
 			decreaseRentalsLeftOf(usedID);
+			// remove ID from available skates
 			availableSkatesID.erase(availableSkatesID.begin());
+			// return ID of the used skate
 			return usedID;
 		}
+		// return a skate
 		void deuseSkate(int index){;
-			if(checkMaintenance(index)){
-				return;
-			}
+			// check if it needs maintenance
+			if(checkMaintenance(index)) return;
 			// set available in skates
 			setAvailable(index, true);
+			// add ID to available skates
 			availableSkatesID.push_back(skates[index].ID);
 		}
-
+		// check if a skate needs maintenance
 		bool checkMaintenance(int index){
+			// if rentals left are 0
 			if(skates[index].rentalsLeft == 0){
 				skates[index].inMaintenance = true;
-				// setAvailable(index, false); // --> it should be already false
+				// setAvailable(index, false); // --> it should already be false
 				skates[index].timeStartMaintenance = time;
 			}
 			return skates[index].inMaintenance;
 		}
-		
-		int getTimeStartMaintenanceOf(int i){
-			return skates[i].timeStartMaintenance;
-		}
+		// check if a skate has finished maintenance
 		void checkStopMaintenanceOf(int index){
-			if(skates[index].timeStartMaintenance+15 == time){
+			// if 15 minutes have passed --> stop maintenance and set available
+			if(getTimeStartMaintenanceOf(index)+15 == time){
 				skates[index].inMaintenance = false;
 				skates[index].available = true;
+				// reset rentals left
 				skates[index].rentalsLeft = rentals;
+				// add ID to available skates
 				availableSkatesID.push_back(skates[index].ID);
+				// add maintenance cost to expenses
 				newExpense += 2;
 			}
 		}
+		// update time
 		void updateTime(int t){
 			newExpense = 0;
 			time = t;
-			for(int i=0; i<nSkates; i++){
-				if(skates[i].inMaintenance){
-					checkStopMaintenanceOf(i);
-				}
-			}
+			// check if any skate has finished maintenance
+			for(int i=0; i<nSkates; i++)
+				if(skates[i].inMaintenance) checkStopMaintenanceOf(i);
 		}
 
-		// copy constructor
-		Skate(const Skate &s){
-			size = s.size;
-			rentals = s.rentals;
-			nSkates = s.nSkates;
-			time = s.time;
-			skates = s.skates;
-			availableSkatesID = s.availableSkatesID;
-		}
 
-		void print(){
-			for(int i=0; i<nSkates; i++){
-				cout << "\tskate " << i << endl;
-				cout << "\t\trentalsLeft: " << skates[i].rentalsLeft << endl;
-				cout << "\t\tavailable: " << skates[i].available << endl;
-				cout << "\t\tinMaintenance: " << skates[i].inMaintenance << endl;
+		// print everything for debugging purposes
+		friend ostream& operator<<(ostream& os, const Skate& s){
+			os << "Skate size: " << s.size << endl;
+			os << "\tNumber of skates: " << s.nSkates << endl;
+			os << "\tNumber of rentals: " << s.rentals << endl;
+			os << "\tCurrent time: " << s.time << endl;
+			os << "\tNew expense: " << s.newExpense << endl;
+			os << "\tAvailable skates: ";
+			for(int i = 0; i < s.availableSkatesID.size(); i++){
+				os << s.availableSkatesID[i] << " ";
 			}
+			os << endl << "\tSkates: " << endl;
+			for(int i = 0; i < s.nSkates; i++){
+				os << "\t\tID " << s.skates[i].ID << endl;
+				os << "\t\t\trentalsLeft: " << s.skates[i].rentalsLeft << endl;
+				os << "\t\t\tavailable: " << s.skates[i].available << endl;
+				os << "\t\t\tinMaintenance: " << s.skates[i].inMaintenance << endl;
+			}
+			return os;
 		}
 };

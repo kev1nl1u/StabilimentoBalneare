@@ -1,52 +1,692 @@
 
 -----
-Tempo: 0 minuti
+Time: 0 minutes
 
-Pista: 32 / 100
-composto da 5 gruppi
+Rink: 4 / 100
+in 1 groups
 
-Pattini: 
-	24	4 / 6		OOXXXX			25	5 / 6	OXXXXX
-	26	6 / 6		XXXXXX			27	4 / 6	OOXXXX
-	28	2 / 6		OOOOXX			29	6 / 6	XXXXXX
-	30	6 / 6		XXXXXX			31	4 / 6	OOXXXX
-	32	6 / 6		XXXXXX			33	6 / 6	XXXXXX
-	34	5 / 6		OXXXXX			35	3 / 6	OOOXXX
-	36	5 / 6		OXXXXX			37	3 / 6	OOOXXX
-	38	5 / 6		OXXXXX			39	3 / 6	OOOXXX
-	40	6 / 6		XXXXXX			41	3 / 6	OOOXXX
-	42	5 / 6		OXXXXX			43	3 / 6	OOOXXX
-	44	4 / 6		OOXXXX		
+Skates status: 
+	24	6 / 6	XXXXXX			25	6 / 6	XXXXXX
+	26	6 / 6	XXXXXX			27	6 / 6	XXXXXX
+	28	4 / 6	OOXXXX			29	6 / 6	XXXXXX
+	30	6 / 6	XXXXXX			31	6 / 6	XXXXXX
+	32	5 / 6	OXXXXX			33	6 / 6	XXXXXX
+	34	6 / 6	XXXXXX			35	6 / 6	XXXXXX
+	36	6 / 6	XXXXXX			37	6 / 6	XXXXXX
+	38	6 / 6	XXXXXX			39	6 / 6	XXXXXX
+	40	5 / 6	OXXXXX			41	6 / 6	XXXXXX
+	42	6 / 6	XXXXXX			43	6 / 6	XXXXXX
+	44	6 / 6	XXXXXX		
 
-Coda: 0 gruppi (0)
+Queue: 0 groups (0 people)
 
-FATTURATO: 0.00 euro
-SPESE: 0.00 euro
+REVENUE: 0.00 euro
+EXPENSES: 0.00 euro
 
 LOG: 
-- NEW gruppo ID0 di 8 persone
-- ADD gruppo ID0 alla coda
-- NEW gruppo ID1 di 2 persone
-- ADD gruppo ID1 alla coda
-- NEW gruppo ID2 di 2 persone
-- ADD gruppo ID2 alla coda
-- NEW gruppo ID3 di 10 persone
-- ADD gruppo ID3 alla coda
-- NEW gruppo ID4 di 10 persone
-- ADD gruppo ID4 alla coda
-- AVAIL taglie gruppo ID0 in coda disponibili (24; 43; 31; 39; 44; 37; 27; 41)
-- IN gruppo ID0 (8 persone) (coda: 5 gruppo) (TAGLIA ID: 24 ID0; 43 ID0; 31 ID0; 39 ID0; 44 ID0; 37 ID0; 27 ID0; 41 ID0)
-- AVAIL taglie gruppo ID1 in coda disponibili (36; 25)
-- IN gruppo ID1 (2 persone) (coda: 4 gruppo) (TAGLIA ID: 36 ID0; 25 ID0)
-- AVAIL taglie gruppo ID2 in coda disponibili (37; 43)
-- IN gruppo ID2 (2 persone) (coda: 3 gruppo) (TAGLIA ID: 37 ID1; 43 ID1)
-- AVAIL taglie gruppo ID3 in coda disponibili (44; 43; 35; 39; 34; 35; 28; 35; 42; 41)
-- IN gruppo ID3 (10 persone) (coda: 2 gruppo) (TAGLIA ID: 44 ID1; 43 ID2; 35 ID0; 39 ID1; 34 ID0; 35 ID1; 28 ID0; 35 ID2; 42 ID0; 41 ID1)
-- AVAIL taglie gruppo ID4 in coda disponibili (28; 24; 41; 37; 28; 28; 39; 31; 38; 27)
-- IN gruppo ID4 (10 persone) (coda: 1 gruppo) (TAGLIA ID: 28 ID1; 24 ID1; 41 ID2; 37 ID2; 28 ID2; 28 ID3; 39 ID2; 31 ID1; 38 ID0; 27 ID1)
-- PISTA gruppi: 
-	ID0 - 8 persone; (TAGLIA ID: 24ID0; 43ID0; 31ID0; 39ID0; 44ID0; 37ID0; 27ID0; 41ID0)
-	ID1 - 2 persone; (TAGLIA ID: 36ID0; 25ID0)
-	ID2 - 2 persone; (TAGLIA ID: 37ID1; 43ID1)
-	ID3 - 10 persone; (TAGLIA ID: 44ID1; 43ID2; 35ID0; 39ID1; 34ID0; 35ID1; 28ID0; 35ID2; 42ID0; 41ID1)
-	ID4 - 10 persone; (TAGLIA ID: 28ID1; 24ID1; 41ID2; 37ID2; 28ID2; 28ID3; 39ID2; 31ID1; 38ID0; 27ID1)
+- NEW group ID0 of 4 people
+- ADD group ID0 to queue
+- AVAIL skates for group ID0 in queue (40; 28; 32; 28)
+- IN group ID0 (+4 people) (queue: 1 group(s)) (SIZE/ID: 40 ID0; 28 ID0; 32 ID0; 28 ID1)
+- Groups in rink: 
+	ID0 - 4 people; (SIZE/ID: 40ID0; 28ID0; 32ID0; 28ID1)
+
+	Pattini: 
+	Size: 24	10    10    10    10    10    10    
+	Size: 25	10    10    10    10    10    10    
+	Size: 26	10    10    10    10    10    10    
+	Size: 27	10    10    10    10    10    10    
+	Size: 28	 9     9    10    10    10    10    
+	Size: 29	10    10    10    10    10    10    
+	Size: 30	10    10    10    10    10    10    
+	Size: 31	10    10    10    10    10    10    
+	Size: 32	 9    10    10    10    10    10    
+	Size: 33	10    10    10    10    10    10    
+	Size: 34	10    10    10    10    10    10    
+	Size: 35	10    10    10    10    10    10    
+	Size: 36	10    10    10    10    10    10    
+	Size: 37	10    10    10    10    10    10    
+	Size: 38	10    10    10    10    10    10    
+	Size: 39	10    10    10    10    10    10    
+	Size: 40	 9    10    10    10    10    10    
+	Size: 41	10    10    10    10    10    10    
+	Size: 42	10    10    10    10    10    10    
+	Size: 43	10    10    10    10    10    10    
+	Size: 44	10    10    10    10    10    10    
+
+-----
+Time: 5 minutes
+
+Rink: 41 / 100
+in 8 groups
+
+Skates status: 
+	24	2 / 6	OOOOXX			25	2 / 6	OOOOXX
+	26	4 / 6	OOXXXX			27	5 / 6	OXXXXX
+	28	4 / 6	XXOOXX			29	6 / 6	XXXXXX
+	30	4 / 6	OOXXXX			31	5 / 6	OXXXXX
+	32	1 / 6	XOOOOO			33	5 / 6	OXXXXX
+	34	4 / 6	OOXXXX			35	4 / 6	OOXXXX
+	36	5 / 6	OXXXXX			37	4 / 6	OOXXXX
+	38	5 / 6	OXXXXX			39	4 / 6	OOXXXX
+	40	4 / 6	XOOXXX			41	5 / 6	OXXXXX
+	42	3 / 6	OOOXXX			43	4 / 6	OOXXXX
+	44	5 / 6	OXXXXX		
+
+Queue: 0 groups (0 people)
+
+REVENUE: 0.50 euro
+EXPENSES: 1.00 euro
+
+LOG: 
+- OUT group ID0 from rink (-4 people) (SIZE/ID: 40 ID0; 28 ID0; 32 ID0; 28 ID0) - TimeIn: 0-5 +0.50 euro
+- NEW group ID1 of 4 people
+- ADD group ID1 to queue
+- NEW group ID2 of 6 people
+- ADD group ID2 to queue
+- NEW group ID3 of 7 people
+- ADD group ID3 to queue
+- NEW group ID4 of 3 people
+- ADD group ID4 to queue
+- NEW group ID5 of 7 people
+- ADD group ID5 to queue
+- NEW group ID6 of 6 people
+- ADD group ID6 to queue
+- NEW group ID7 of 4 people
+- ADD group ID7 to queue
+- NEW group ID8 of 4 people
+- ADD group ID8 to queue
+- AVAIL skates for group ID1 in queue (43; 40; 24; 31)
+- IN group ID1 (+4 people) (queue: 8 group(s)) (SIZE/ID: 43 ID0; 40 ID1; 24 ID0; 31 ID0)
+- AVAIL skates for group ID2 in queue (37; 42; 34; 26; 24; 38)
+- IN group ID2 (+6 people) (queue: 7 group(s)) (SIZE/ID: 37 ID0; 42 ID0; 34 ID0; 26 ID0; 24 ID1; 38 ID0)
+- AVAIL skates for group ID3 in queue (32; 35; 39; 39; 24; 37; 33)
+- IN group ID3 (+7 people) (queue: 6 group(s)) (SIZE/ID: 32 ID1; 35 ID0; 39 ID0; 39 ID1; 24 ID2; 37 ID1; 33 ID0)
+- AVAIL skates for group ID4 in queue (25; 25; 25)
+- IN group ID4 (+3 people) (queue: 5 group(s)) (SIZE/ID: 25 ID0; 25 ID1; 25 ID2)
+- AVAIL skates for group ID5 in queue (32; 42; 32; 27; 30; 30; 43)
+- IN group ID5 (+7 people) (queue: 4 group(s)) (SIZE/ID: 32 ID2; 42 ID1; 32 ID3; 27 ID0; 30 ID0; 30 ID1; 43 ID1)
+- AVAIL skates for group ID6 in queue (34; 36; 24; 25; 40; 42)
+- IN group ID6 (+6 people) (queue: 3 group(s)) (SIZE/ID: 34 ID1; 36 ID0; 24 ID3; 25 ID3; 40 ID2; 42 ID2)
+- AVAIL skates for group ID7 in queue (32; 32; 44; 28)
+- IN group ID7 (+4 people) (queue: 2 group(s)) (SIZE/ID: 32 ID4; 32 ID5; 44 ID0; 28 ID2)
+- AVAIL skates for group ID8 in queue (26; 41; 28; 35)
+- IN group ID8 (+4 people) (queue: 1 group(s)) (SIZE/ID: 26 ID1; 41 ID0; 28 ID3; 35 ID1)
+- Groups in rink: 
+	ID1 - 4 people; (SIZE/ID: 43ID0; 40ID1; 24ID0; 31ID0)
+	ID2 - 6 people; (SIZE/ID: 37ID0; 42ID0; 34ID0; 26ID0; 24ID1; 38ID0)
+	ID3 - 7 people; (SIZE/ID: 32ID1; 35ID0; 39ID0; 39ID1; 24ID2; 37ID1; 33ID0)
+	ID4 - 3 people; (SIZE/ID: 25ID0; 25ID1; 25ID2)
+	ID5 - 7 people; (SIZE/ID: 32ID2; 42ID1; 32ID3; 27ID0; 30ID0; 30ID1; 43ID1)
+	ID6 - 6 people; (SIZE/ID: 34ID1; 36ID0; 24ID3; 25ID3; 40ID2; 42ID2)
+	ID7 - 4 people; (SIZE/ID: 32ID4; 32ID5; 44ID0; 28ID2)
+	ID8 - 4 people; (SIZE/ID: 26ID1; 41ID0; 28ID3; 35ID1)
+
+	Pattini: 
+	Size: 24	 9     9     9     9    10    10    
+	Size: 25	 9     9     9     9    10    10    
+	Size: 26	 9     9    10    10    10    10    
+	Size: 27	 9    10    10    10    10    10    
+	Size: 28	 9     9     9     9    10    10    
+	Size: 29	10    10    10    10    10    10    
+	Size: 30	 9     9    10    10    10    10    
+	Size: 31	 9    10    10    10    10    10    
+	Size: 32	 9     9     9     9     9     9    
+	Size: 33	 9    10    10    10    10    10    
+	Size: 34	 9     9    10    10    10    10    
+	Size: 35	 9     9    10    10    10    10    
+	Size: 36	 9    10    10    10    10    10    
+	Size: 37	 9     9    10    10    10    10    
+	Size: 38	 9    10    10    10    10    10    
+	Size: 39	 9     9    10    10    10    10    
+	Size: 40	 9     9     9    10    10    10    
+	Size: 41	 9    10    10    10    10    10    
+	Size: 42	 9     9     9    10    10    10    
+	Size: 43	 9     9    10    10    10    10    
+	Size: 44	 9    10    10    10    10    10    
+
+-----
+Time: 10 minutes
+
+Rink: 52 / 100
+in 10 groups
+
+Skates status: 
+	24	1 / 6	OOXOOO			25	1 / 6	OOOOOX
+	26	1 / 6	OOOOOX			27	4 / 6	OOXXXX
+	28	4 / 6	XXOOXX			29	4 / 6	OOXXXX
+	30	4 / 6	OOXXXX			31	5 / 6	OXXXXX
+	32	0 / 6	OOOOOO			33	5 / 6	XOXXXX
+	34	3 / 6	OOOXXX			35	5 / 6	XOXXXX
+	36	4 / 6	OOXXXX			37	4 / 6	OXOXXX
+	38	5 / 6	OXXXXX			39	6 / 6	XXXXXX
+	40	2 / 6	XOOOOX			41	5 / 6	OXXXXX
+	42	3 / 6	OOOXXX			43	3 / 6	OOOXXX
+	44	5 / 6	OXXXXX		
+
+Queue: 1 groups (8 people)
+
+REVENUE: 1.00 euro
+EXPENSES: 2.00 euro
+
+LOG: 
+- OUT group ID3 from rink (-7 people) (SIZE/ID: 32 ID3; 35 ID3; 39 ID3; 39 ID3; 24 ID3; 37 ID3; 33 ID3) - TimeIn: 5-10 +0.50 euro
+- NEW group ID9 of 7 people
+- ADD group ID9 to queue
+- NEW group ID10 of 2 people
+- ADD group ID10 to queue
+- NEW group ID11 of 9 people
+- ADD group ID11 to queue
+- NEW group ID12 of 8 people
+- ADD group ID12 to queue
+- AVAIL skates for group ID9 in queue (29; 29; 34; 37; 32; 24; 26)
+- IN group ID9 (+7 people) (queue: 4 group(s)) (SIZE/ID: 29 ID0; 29 ID1; 34 ID2; 37 ID2; 32 ID0; 24 ID4; 26 ID2)
+- AVAIL skates for group ID10 in queue (43; 36)
+- IN group ID10 (+2 people) (queue: 3 group(s)) (SIZE/ID: 43 ID2; 36 ID1)
+- AVAIL skates for group ID11 in queue (32; 25; 40; 26; 27; 26; 24; 33; 40)
+- IN group ID11 (+9 people) (queue: 2 group(s)) (SIZE/ID: 32 ID1; 25 ID4; 40 ID3; 26 ID3; 27 ID1; 26 ID4; 24 ID5; 33 ID1; 40 ID4)
+- Groups in rink: 
+	ID1 - 4 people; (SIZE/ID: 43ID0; 40ID1; 24ID0; 31ID0)
+	ID2 - 6 people; (SIZE/ID: 37ID0; 42ID0; 34ID0; 26ID0; 24ID1; 38ID0)
+	ID4 - 3 people; (SIZE/ID: 25ID0; 25ID1; 25ID2)
+	ID5 - 7 people; (SIZE/ID: 32ID2; 42ID1; 32ID3; 27ID0; 30ID0; 30ID1; 43ID1)
+	ID6 - 6 people; (SIZE/ID: 34ID1; 36ID0; 24ID3; 25ID3; 40ID2; 42ID2)
+	ID7 - 4 people; (SIZE/ID: 32ID4; 32ID5; 44ID0; 28ID2)
+	ID8 - 4 people; (SIZE/ID: 26ID1; 41ID0; 28ID3; 35ID1)
+	ID9 - 7 people; (SIZE/ID: 29ID0; 29ID1; 34ID2; 37ID2; 32ID0; 24ID4; 26ID2)
+	ID10 - 2 people; (SIZE/ID: 43ID2; 36ID1)
+	ID11 - 9 people; (SIZE/ID: 32ID1; 25ID4; 40ID3; 26ID3; 27ID1; 26ID4; 24ID5; 33ID1; 40ID4)
+
+	Pattini: 
+	Size: 24	 9     9     9     9     9     9    
+	Size: 25	 9     9     9     9     9    10    
+	Size: 26	 9     9     9     9     9    10    
+	Size: 27	 9     9    10    10    10    10    
+	Size: 28	 9     9     9     9    10    10    
+	Size: 29	 9     9    10    10    10    10    
+	Size: 30	 9     9    10    10    10    10    
+	Size: 31	 9    10    10    10    10    10    
+	Size: 32	 8     8     9     9     9     9    
+	Size: 33	 9     9    10    10    10    10    
+	Size: 34	 9     9     9    10    10    10    
+	Size: 35	 9     9    10    10    10    10    
+	Size: 36	 9     9    10    10    10    10    
+	Size: 37	 9     9     9    10    10    10    
+	Size: 38	 9    10    10    10    10    10    
+	Size: 39	 9     9    10    10    10    10    
+	Size: 40	 9     9     9     9     9    10    
+	Size: 41	 9    10    10    10    10    10    
+	Size: 42	 9     9     9    10    10    10    
+	Size: 43	 9     9     9    10    10    10    
+	Size: 44	 9    10    10    10    10    10    
+
+-----
+Time: 15 minutes
+
+Rink: 59 / 100
+in 10 groups
+
+Skates status: 
+	24	2 / 6	OXXOOO			25	1 / 6	OOOOOX
+	26	1 / 6	OXOOOO			27	5 / 6	XOXXXX
+	28	4 / 6	XXOXOX			29	3 / 6	OOOXXX
+	30	5 / 6	XXOXXX			31	3 / 6	OOOXXX
+	32	0 / 6	OOOOOO			33	4 / 6	XOOXXX
+	34	2 / 6	XOOOOX			35	5 / 6	XXOXXX
+	36	4 / 6	OOXXXX			37	5 / 6	XXOXXX
+	38	5 / 6	XOXXXX			39	6 / 6	XXXXXX
+	40	2 / 6	XOOOOX			41	3 / 6	XOOOXX
+	42	5 / 6	XXOXXX			43	2 / 6	OXOOOX
+	44	0 / 6	OOOOOO		
+
+Queue: 0 groups (0 people)
+
+REVENUE: 4.00 euro
+EXPENSES: 3.00 euro
+
+LOG: 
+- OUT group ID2 from rink (-6 people) (SIZE/ID: 37 ID2; 42 ID2; 34 ID2; 26 ID2; 24 ID2; 38 ID2) - TimeIn: 5-15 +1.00 euro
+- OUT group ID5 from rink (-7 people) (SIZE/ID: 32 ID5; 42 ID5; 32 ID5; 27 ID5; 30 ID5; 30 ID5; 43 ID5) - TimeIn: 5-15 +1.00 euro
+- OUT group ID8 from rink (-4 people) (SIZE/ID: 26 ID8; 41 ID8; 28 ID8; 35 ID8) - TimeIn: 5-15 +1.00 euro
+- NEW group ID13 of 7 people
+- ADD group ID13 to queue
+- NEW group ID14 of 9 people
+- ADD group ID14 to queue
+- AVAIL skates for group ID12 in queue (32; 34; 30; 26; 44; 43; 32; 31)
+- IN group ID12 (+8 people) (queue: 3 group(s)) (SIZE/ID: 32 ID2; 34 ID3; 30 ID2; 26 ID5; 44 ID1; 43 ID3; 32 ID3; 31 ID1)
+- AVAIL skates for group ID13 in queue (41; 44; 44; 31; 29; 41; 38)
+- IN group ID13 (+7 people) (queue: 2 group(s)) (SIZE/ID: 41 ID1; 44 ID2; 44 ID3; 31 ID2; 29 ID2; 41 ID2; 38 ID1)
+- AVAIL skates for group ID14 in queue (26; 28; 34; 44; 44; 43; 41; 35; 33)
+- IN group ID14 (+9 people) (queue: 1 group(s)) (SIZE/ID: 26 ID0; 28 ID4; 34 ID4; 44 ID4; 44 ID5; 43 ID4; 41 ID3; 35 ID2; 33 ID2)
+- Groups in rink: 
+	ID1 - 4 people; (SIZE/ID: 43ID0; 40ID1; 24ID0; 31ID0)
+	ID4 - 3 people; (SIZE/ID: 25ID0; 25ID1; 25ID2)
+	ID6 - 6 people; (SIZE/ID: 34ID1; 36ID0; 24ID3; 25ID3; 40ID2; 42ID2)
+	ID7 - 4 people; (SIZE/ID: 32ID4; 32ID5; 44ID0; 28ID2)
+	ID9 - 7 people; (SIZE/ID: 29ID0; 29ID1; 34ID2; 37ID2; 32ID0; 24ID4; 26ID2)
+	ID10 - 2 people; (SIZE/ID: 43ID2; 36ID1)
+	ID11 - 9 people; (SIZE/ID: 32ID1; 25ID4; 40ID3; 26ID3; 27ID1; 26ID4; 24ID5; 33ID1; 40ID4)
+	ID12 - 8 people; (SIZE/ID: 32ID2; 34ID3; 30ID2; 26ID5; 44ID1; 43ID3; 32ID3; 31ID1)
+	ID13 - 7 people; (SIZE/ID: 41ID1; 44ID2; 44ID3; 31ID2; 29ID2; 41ID2; 38ID1)
+	ID14 - 9 people; (SIZE/ID: 26ID0; 28ID4; 34ID4; 44ID4; 44ID5; 43ID4; 41ID3; 35ID2; 33ID2)
+
+	Pattini: 
+	Size: 24	 9     9     9     9     9     9    
+	Size: 25	 9     9     9     9     9    10    
+	Size: 26	 8     9     9     9     9     9    
+	Size: 27	 9     9    10    10    10    10    
+	Size: 28	 9     9     9     9     9    10    
+	Size: 29	 9     9     9    10    10    10    
+	Size: 30	 9     9     9    10    10    10    
+	Size: 31	 9     9     9    10    10    10    
+	Size: 32	 8     8     8     8     9     9    
+	Size: 33	 9     9     9    10    10    10    
+	Size: 34	 9     9     9     9     9    10    
+	Size: 35	 9     9     9    10    10    10    
+	Size: 36	 9     9    10    10    10    10    
+	Size: 37	 9     9     9    10    10    10    
+	Size: 38	 9     9    10    10    10    10    
+	Size: 39	 9     9    10    10    10    10    
+	Size: 40	 9     9     9     9     9    10    
+	Size: 41	 9     9     9     9    10    10    
+	Size: 42	 9     9     9    10    10    10    
+	Size: 43	 9     9     9     9     9    10    
+	Size: 44	 9     9     9     9     9     9    
+
+-----
+Time: 20 minutes
+
+Rink: 36 / 100
+in 8 groups
+
+Skates status: 
+	24	4 / 6	XXXXOO			25	2 / 6	OOOXOX
+	26	2 / 6	XXOOOO			27	5 / 6	XOXXXX
+	28	5 / 6	XXXXXO			29	4 / 6	OOXXXX
+	30	5 / 6	XXOXXX			31	5 / 6	XOXXXX
+	32	2 / 6	OOOOXX			33	5 / 6	XOXXXX
+	34	1 / 6	OOOOXO			35	5 / 6	XXXOXX
+	36	5 / 6	XOXXXX			37	5 / 6	XXOXXX
+	38	6 / 6	XXXXXX			39	6 / 6	XXXXXX
+	40	4 / 6	XXXOOX			41	6 / 6	XXXXXX
+	42	5 / 6	XXXOXX			43	3 / 6	XXOOXO
+	44	5 / 6	XOXXXX		
+
+Queue: 0 groups (0 people)
+
+REVENUE: 9.50 euro
+EXPENSES: 4.00 euro
+
+LOG: 
+- OUT group ID1 from rink (-4 people) (SIZE/ID: 43 ID1; 40 ID1; 24 ID1; 31 ID1) - TimeIn: 5-20 +1.50 euro
+- OUT group ID6 from rink (-6 people) (SIZE/ID: 34 ID6; 36 ID6; 24 ID6; 25 ID6; 40 ID6; 42 ID6) - TimeIn: 5-20 +1.50 euro
+- OUT group ID7 from rink (-4 people) (SIZE/ID: 32 ID7; 32 ID7; 44 ID7; 28 ID7) - TimeIn: 5-20 +1.50 euro
+- OUT group ID13 from rink (-7 people) (SIZE/ID: 41 ID13; 44 ID13; 44 ID13; 31 ID13; 29 ID13; 41 ID13; 38 ID13) - TimeIn: 15-20 +0.50 euro
+- OUT group ID14 from rink (-9 people) (SIZE/ID: 26 ID14; 28 ID14; 34 ID14; 44 ID14; 44 ID14; 43 ID14; 41 ID14; 35 ID14; 33 ID14) - TimeIn: 15-20 +0.50 euro
+- NEW group ID15 of 1 people
+- ADD group ID15 to queue
+- NEW group ID16 of 3 people
+- ADD group ID16 to queue
+- NEW group ID17 of 3 people
+- ADD group ID17 to queue
+- AVAIL skates for group ID15 in queue (35)
+- IN group ID15 (+1 people) (queue: 3 group(s)) (SIZE/ID: 35 ID3)
+- AVAIL skates for group ID16 in queue (42; 34; 28)
+- IN group ID16 (+3 people) (queue: 2 group(s)) (SIZE/ID: 42 ID3; 34 ID5; 28 ID5)
+- AVAIL skates for group ID17 in queue (34; 43; 34)
+- IN group ID17 (+3 people) (queue: 1 group(s)) (SIZE/ID: 34 ID0; 43 ID5; 34 ID1)
+- Groups in rink: 
+	ID4 - 3 people; (SIZE/ID: 25ID0; 25ID1; 25ID2)
+	ID9 - 7 people; (SIZE/ID: 29ID0; 29ID1; 34ID2; 37ID2; 32ID0; 24ID4; 26ID2)
+	ID10 - 2 people; (SIZE/ID: 43ID2; 36ID1)
+	ID11 - 9 people; (SIZE/ID: 32ID1; 25ID4; 40ID3; 26ID3; 27ID1; 26ID4; 24ID5; 33ID1; 40ID4)
+	ID12 - 8 people; (SIZE/ID: 32ID2; 34ID3; 30ID2; 26ID5; 44ID1; 43ID3; 32ID3; 31ID1)
+	ID15 - 1 people; (SIZE/ID: 35ID3)
+	ID16 - 3 people; (SIZE/ID: 42ID3; 34ID5; 28ID5)
+	ID17 - 3 people; (SIZE/ID: 34ID0; 43ID5; 34ID1)
+
+	Pattini: 
+	Size: 24	 9     9     9     9     9     9    
+	Size: 25	 9     9     9     9     9    10    
+	Size: 26	 8     9     9     9     9     9    
+	Size: 27	 9     9    10    10    10    10    
+	Size: 28	 9     9     9     9     9     9    
+	Size: 29	 9     9     9    10    10    10    
+	Size: 30	 9     9     9    10    10    10    
+	Size: 31	 9     9     9    10    10    10    
+	Size: 32	 8     8     8     8     9     9    
+	Size: 33	 9     9     9    10    10    10    
+	Size: 34	 8     8     9     9     9     9    
+	Size: 35	 9     9     9     9    10    10    
+	Size: 36	 9     9    10    10    10    10    
+	Size: 37	 9     9     9    10    10    10    
+	Size: 38	 9     9    10    10    10    10    
+	Size: 39	 9     9    10    10    10    10    
+	Size: 40	 9     9     9     9     9    10    
+	Size: 41	 9     9     9     9    10    10    
+	Size: 42	 9     9     9     9    10    10    
+	Size: 43	 9     9     9     9     9     9    
+	Size: 44	 9     9     9     9     9     9    
+
+-----
+Time: 25 minutes
+
+Rink: 24 / 100
+in 6 groups
+
+Skates status: 
+	24	5 / 6	XXXXXO			25	1 / 6	OOOXOO
+	26	3 / 6	XOXOOX			27	4 / 6	XOOXXX
+	28	5 / 6	OXXXXX			29	6 / 6	XXXXXX
+	30	5 / 6	XXXOXX			31	6 / 6	XXXXXX
+	32	5 / 6	XOXXXX			33	5 / 6	XOXXXX
+	34	3 / 6	OOXXOX			35	5 / 6	XXXOXX
+	36	5 / 6	XXOXXX			37	6 / 6	XXXXXX
+	38	6 / 6	XXXXXX			39	6 / 6	XXXXXX
+	40	4 / 6	XXXOOX			41	6 / 6	XXXXXX
+	42	5 / 6	XXXXOX			43	5 / 6	XXXXXO
+	44	6 / 6	XXXXXX		
+
+Queue: 0 groups (0 people)
+
+REVENUE: 14.00 euro
+EXPENSES: 5.00 euro
+
+LOG: 
+- OUT group ID9 from rink (-7 people) (SIZE/ID: 29 ID9; 29 ID9; 34 ID9; 37 ID9; 32 ID9; 24 ID9; 26 ID9) - TimeIn: 10-25 +1.50 euro
+- OUT group ID10 from rink (-2 people) (SIZE/ID: 43 ID10; 36 ID10) - TimeIn: 10-25 +1.50 euro
+- OUT group ID12 from rink (-8 people) (SIZE/ID: 32 ID12; 34 ID12; 30 ID12; 26 ID12; 44 ID12; 43 ID12; 32 ID12; 31 ID12) - TimeIn: 15-25 +1.00 euro
+- OUT group ID16 from rink (-3 people) (SIZE/ID: 42 ID16; 34 ID16; 28 ID16) - TimeIn: 20-25 +0.50 euro
+- NEW group ID18 of 4 people
+- ADD group ID18 to queue
+- NEW group ID19 of 4 people
+- ADD group ID19 to queue
+- AVAIL skates for group ID18 in queue (34; 28; 26; 30)
+- IN group ID18 (+4 people) (queue: 2 group(s)) (SIZE/ID: 34 ID4; 28 ID0; 26 ID1; 30 ID3)
+- AVAIL skates for group ID19 in queue (42; 27; 25; 36)
+- IN group ID19 (+4 people) (queue: 1 group(s)) (SIZE/ID: 42 ID4; 27 ID2; 25 ID5; 36 ID2)
+- Groups in rink: 
+	ID4 - 3 people; (SIZE/ID: 25ID0; 25ID1; 25ID2)
+	ID11 - 9 people; (SIZE/ID: 32ID1; 25ID4; 40ID3; 26ID3; 27ID1; 26ID4; 24ID5; 33ID1; 40ID4)
+	ID15 - 1 people; (SIZE/ID: 35ID3)
+	ID17 - 3 people; (SIZE/ID: 34ID0; 43ID5; 34ID1)
+	ID18 - 4 people; (SIZE/ID: 34ID4; 28ID0; 26ID1; 30ID3)
+	ID19 - 4 people; (SIZE/ID: 42ID4; 27ID2; 25ID5; 36ID2)
+
+	Pattini: 
+	Size: 24	 9     9     9     9     9     9    
+	Size: 25	 9     9     9     9     9     9    
+	Size: 26	 8     8     9     9     9     9    
+	Size: 27	 9     9     9    10    10    10    
+	Size: 28	 8     9     9     9     9     9    
+	Size: 29	 9     9     9    10    10    10    
+	Size: 30	 9     9     9     9    10    10    
+	Size: 31	 9     9     9    10    10    10    
+	Size: 32	 8     8     8     8     9     9    
+	Size: 33	 9     9     9    10    10    10    
+	Size: 34	 8     8     9     9     8     9    
+	Size: 35	 9     9     9     9    10    10    
+	Size: 36	 9     9     9    10    10    10    
+	Size: 37	 9     9     9    10    10    10    
+	Size: 38	 9     9    10    10    10    10    
+	Size: 39	 9     9    10    10    10    10    
+	Size: 40	 9     9     9     9     9    10    
+	Size: 41	 9     9     9     9    10    10    
+	Size: 42	 9     9     9     9     9    10    
+	Size: 43	 9     9     9     9     9     9    
+	Size: 44	 9     9     9     9     9     9    
+
+-----
+Time: 30 minutes
+
+Rink: 39 / 100
+in 8 groups
+
+Skates status: 
+	24	5 / 6	XXXXXO			25	3 / 6	OXXOOX
+	26	3 / 6	XOXOOX			27	2 / 6	XOXOOO
+	28	5 / 6	OXXXXX			29	5 / 6	XXXOXX
+	30	4 / 6	XXXOOX			31	5 / 6	XXXOXX
+	32	2 / 6	OOXXOO			33	5 / 6	XOXXXX
+	34	1 / 6	OOOOOX			35	3 / 6	XXXOOO
+	36	5 / 6	XXXOXX			37	6 / 6	XXXXXX
+	38	6 / 6	XXXXXX			39	6 / 6	XXXXXX
+	40	4 / 6	XXXOOX			41	6 / 6	XXXXXX
+	42	4 / 6	OXXXXO			43	3 / 6	OOXXXO
+	44	4 / 6	OXOXXX		
+
+Queue: 0 groups (0 people)
+
+REVENUE: 17.00 euro
+EXPENSES: 6.00 euro
+
+LOG: 
+- OUT group ID4 from rink (-3 people) (SIZE/ID: 25 ID4; 25 ID4; 25 ID4) - TimeIn: 5-30 +2.50 euro
+- OUT group ID19 from rink (-4 people) (SIZE/ID: 42 ID19; 27 ID19; 25 ID19; 36 ID19) - TimeIn: 25-30 +0.50 euro
+- NEW group ID20 of 6 people
+- ADD group ID20 to queue
+- NEW group ID21 of 4 people
+- ADD group ID21 to queue
+- NEW group ID22 of 8 people
+- ADD group ID22 to queue
+- NEW group ID23 of 4 people
+- ADD group ID23 to queue
+- AVAIL skates for group ID20 in queue (34; 27; 36; 43; 42; 34)
+- IN group ID20 (+6 people) (queue: 4 group(s)) (SIZE/ID: 34 ID2; 27 ID3; 36 ID3; 43 ID1; 42 ID5; 34 ID3)
+- AVAIL skates for group ID21 in queue (29; 27; 44; 25)
+- IN group ID21 (+4 people) (queue: 3 group(s)) (SIZE/ID: 29 ID3; 27 ID4; 44 ID0; 25 ID3)
+- AVAIL skates for group ID22 in queue (32; 42; 31; 43; 35; 32; 44; 27)
+- IN group ID22 (+8 people) (queue: 2 group(s)) (SIZE/ID: 32 ID4; 42 ID0; 31 ID3; 43 ID0; 35 ID4; 32 ID5; 44 ID2; 27 ID5)
+- AVAIL skates for group ID23 in queue (25; 30; 32; 35)
+- IN group ID23 (+4 people) (queue: 1 group(s)) (SIZE/ID: 25 ID0; 30 ID4; 32 ID0; 35 ID5)
+- Groups in rink: 
+	ID11 - 9 people; (SIZE/ID: 32ID1; 25ID4; 40ID3; 26ID3; 27ID1; 26ID4; 24ID5; 33ID1; 40ID4)
+	ID15 - 1 people; (SIZE/ID: 35ID3)
+	ID17 - 3 people; (SIZE/ID: 34ID0; 43ID5; 34ID1)
+	ID18 - 4 people; (SIZE/ID: 34ID4; 28ID0; 26ID1; 30ID3)
+	ID20 - 6 people; (SIZE/ID: 34ID2; 27ID3; 36ID3; 43ID1; 42ID5; 34ID3)
+	ID21 - 4 people; (SIZE/ID: 29ID3; 27ID4; 44ID0; 25ID3)
+	ID22 - 8 people; (SIZE/ID: 32ID4; 42ID0; 31ID3; 43ID0; 35ID4; 32ID5; 44ID2; 27ID5)
+	ID23 - 4 people; (SIZE/ID: 25ID0; 30ID4; 32ID0; 35ID5)
+
+	Pattini: 
+	Size: 24	 9     9     9     9     9     9    
+	Size: 25	 8     9     9     8     9     9    
+	Size: 26	 8     8     9     9     9     9    
+	Size: 27	 9     9     9     9     9     9    
+	Size: 28	 8     9     9     9     9     9    
+	Size: 29	 9     9     9     9    10    10    
+	Size: 30	 9     9     9     9     9    10    
+	Size: 31	 9     9     9     9    10    10    
+	Size: 32	 7     8     8     8     8     8    
+	Size: 33	 9     9     9    10    10    10    
+	Size: 34	 8     8     8     8     8     9    
+	Size: 35	 9     9     9     9     9     9    
+	Size: 36	 9     9     9     9    10    10    
+	Size: 37	 9     9     9    10    10    10    
+	Size: 38	 9     9    10    10    10    10    
+	Size: 39	 9     9    10    10    10    10    
+	Size: 40	 9     9     9     9     9    10    
+	Size: 41	 9     9     9     9    10    10    
+	Size: 42	 8     9     9     9     9     9    
+	Size: 43	 8     8     9     9     9     9    
+	Size: 44	 8     9     8     9     9     9    
+
+-----
+Time: 35 minutes
+
+Rink: 73 / 100
+in 14 groups
+
+Skates status: 
+	24	4 / 6	XXOXXO			25	2 / 6	OOXOOX
+	26	4 / 6	XXXOOX			27	1 / 6	OOXOOO
+	28	1 / 6	XOOOOO			29	2 / 6	XXOOOO
+	30	5 / 6	XXXXOX			31	3 / 6	XXXOOO
+	32	1 / 6	OOOXOO			33	4 / 6	XOXOXX
+	34	0 / 6	OOOOOO			35	1 / 6	OOXOOO
+	36	4 / 6	XXXOOX			37	4 / 6	XXXOOX
+	38	5 / 6	XXOXXX			39	2 / 6	XXOOOO
+	40	0 / 6	OOOOOO			41	6 / 6	XXXXXX
+	42	4 / 6	OXXXXO			43	0 / 6	OOOOOO
+	44	0 / 6	OOOOOO		
+
+Queue: 1 groups (5 people)
+
+REVENUE: 18.00 euro
+EXPENSES: 7.00 euro
+
+LOG: 
+- OUT group ID18 from rink (-4 people) (SIZE/ID: 34 ID18; 28 ID18; 26 ID18; 30 ID18) - TimeIn: 25-35 +1.00 euro
+- NEW group ID24 of 7 people
+- ADD group ID24 to queue
+- NEW group ID25 of 1 people
+- ADD group ID25 to queue
+- NEW group ID26 of 8 people
+- ADD group ID26 to queue
+- NEW group ID27 of 4 people
+- ADD group ID27 to queue
+- NEW group ID28 of 8 people
+- ADD group ID28 to queue
+- NEW group ID29 of 8 people
+- ADD group ID29 to queue
+- NEW group ID30 of 2 people
+- ADD group ID30 to queue
+- NEW group ID31 of 5 people
+- ADD group ID31 to queue
+- AVAIL skates for group ID24 in queue (28; 44; 24; 28; 28; 40; 40)
+- IN group ID24 (+7 people) (queue: 8 group(s)) (SIZE/ID: 28 ID1; 44 ID3; 24 ID2; 28 ID3; 28 ID2; 40 ID5; 40 ID0)
+- AVAIL skates for group ID25 in queue (25)
+- IN group ID25 (+1 people) (queue: 7 group(s)) (SIZE/ID: 25 ID1)
+- AVAIL skates for group ID26 in queue (31; 34; 37; 43; 35; 39; 40; 36)
+- IN group ID26 (+8 people) (queue: 6 group(s)) (SIZE/ID: 31 ID4; 34 ID5; 37 ID3; 43 ID4; 35 ID0; 39 ID2; 40 ID1; 36 ID4)
+- AVAIL skates for group ID27 in queue (29; 33; 40; 39)
+- IN group ID27 (+4 people) (queue: 5 group(s)) (SIZE/ID: 29 ID4; 33 ID3; 40 ID2; 39 ID3)
+- AVAIL skates for group ID28 in queue (27; 32; 29; 44; 43; 37; 43; 28)
+- IN group ID28 (+8 people) (queue: 4 group(s)) (SIZE/ID: 27 ID0; 32 ID2; 29 ID5; 44 ID4; 43 ID2; 37 ID4; 43 ID3; 28 ID4)
+- AVAIL skates for group ID29 in queue (39; 31; 38; 35; 29; 44; 34; 28)
+- IN group ID29 (+8 people) (queue: 3 group(s)) (SIZE/ID: 39 ID4; 31 ID5; 38 ID2; 35 ID1; 29 ID2; 44 ID5; 34 ID4; 28 ID5)
+- AVAIL skates for group ID30 in queue (39; 44)
+- IN group ID30 (+2 people) (queue: 2 group(s)) (SIZE/ID: 39 ID5; 44 ID1)
+- Groups in rink: 
+	ID11 - 9 people; (SIZE/ID: 32ID1; 25ID4; 40ID3; 26ID3; 27ID1; 26ID4; 24ID5; 33ID1; 40ID4)
+	ID15 - 1 people; (SIZE/ID: 35ID3)
+	ID17 - 3 people; (SIZE/ID: 34ID0; 43ID5; 34ID1)
+	ID20 - 6 people; (SIZE/ID: 34ID2; 27ID3; 36ID3; 43ID1; 42ID5; 34ID3)
+	ID21 - 4 people; (SIZE/ID: 29ID3; 27ID4; 44ID0; 25ID3)
+	ID22 - 8 people; (SIZE/ID: 32ID4; 42ID0; 31ID3; 43ID0; 35ID4; 32ID5; 44ID2; 27ID5)
+	ID23 - 4 people; (SIZE/ID: 25ID0; 30ID4; 32ID0; 35ID5)
+	ID24 - 7 people; (SIZE/ID: 28ID1; 44ID3; 24ID2; 28ID3; 28ID2; 40ID5; 40ID0)
+	ID25 - 1 people; (SIZE/ID: 25ID1)
+	ID26 - 8 people; (SIZE/ID: 31ID4; 34ID5; 37ID3; 43ID4; 35ID0; 39ID2; 40ID1; 36ID4)
+	ID27 - 4 people; (SIZE/ID: 29ID4; 33ID3; 40ID2; 39ID3)
+	ID28 - 8 people; (SIZE/ID: 27ID0; 32ID2; 29ID5; 44ID4; 43ID2; 37ID4; 43ID3; 28ID4)
+	ID29 - 8 people; (SIZE/ID: 39ID4; 31ID5; 38ID2; 35ID1; 29ID2; 44ID5; 34ID4; 28ID5)
+	ID30 - 2 people; (SIZE/ID: 39ID5; 44ID1)
+
+	Pattini: 
+	Size: 24	 9     9     8     9     9     9    
+	Size: 25	 8     8     9     8     9     9    
+	Size: 26	 8     8     9     9     9     9    
+	Size: 27	 8     9     9     9     9     9    
+	Size: 28	 8     8     8     8     8     8    
+	Size: 29	 9     9     8     9     9     9    
+	Size: 30	 9     9     9     9     9    10    
+	Size: 31	 9     9     9     9     9     9    
+	Size: 32	 7     8     7     8     8     8    
+	Size: 33	 9     9     9     9    10    10    
+	Size: 34	 8     8     8     8     7     8    
+	Size: 35	 8     8     9     9     9     9    
+	Size: 36	 9     9     9     9     9    10    
+	Size: 37	 9     9     9     9     9    10    
+	Size: 38	 9     9     9    10    10    10    
+	Size: 39	 9     9     9     9     9     9    
+	Size: 40	 8     8     8     9     9     9    
+	Size: 41	 9     9     9     9    10    10    
+	Size: 42	 8     9     9     9     9     9    
+	Size: 43	 8     8     8     8     8     9    
+	Size: 44	 8     8     8     8     8     8    
+
+-----
+Time: 40 minutes
+
+Rink: 61 / 100
+in 11 groups
+
+Skates status: 
+	24	4 / 6	XXOXXO			25	1 / 6	XOOOOO
+	26	4 / 6	XXXOOX			27	2 / 6	XOXOOO
+	28	1 / 6	OOOOXO			29	4 / 6	XXOOXX
+	30	5 / 6	XXXXXO			31	2 / 6	OXOOXO
+	32	3 / 6	XOXXOO			33	4 / 6	XOXXOX
+	34	3 / 6	XXOOOX			35	3 / 6	XOOXOX
+	36	4 / 6	XXXOXO			37	6 / 6	XXXXXX
+	38	4 / 6	XXOOXX			39	4 / 6	OXXXOX
+	40	0 / 6	OOOOOO			41	5 / 6	XXXXOX
+	42	3 / 6	OOXXXO			43	3 / 6	OOXXXO
+	44	0 / 6	OOOOOO		
+
+Queue: 1 groups (7 people)
+
+REVENUE: 25.00 euro
+EXPENSES: 8.00 euro
+
+LOG: 
+- OUT group ID15 from rink (-1 people) (SIZE/ID: 35 ID15) - TimeIn: 20-40 +2.00 euro
+- OUT group ID17 from rink (-3 people) (SIZE/ID: 34 ID17; 43 ID17; 34 ID17) - TimeIn: 20-40 +2.00 euro
+- OUT group ID23 from rink (-4 people) (SIZE/ID: 25 ID23; 30 ID23; 32 ID23; 35 ID23) - TimeIn: 30-40 +1.00 euro
+- OUT group ID26 from rink (-8 people) (SIZE/ID: 31 ID26; 34 ID26; 37 ID26; 43 ID26; 35 ID26; 39 ID26; 40 ID26; 36 ID26) - TimeIn: 35-40 +0.50 euro
+- OUT group ID27 from rink (-4 people) (SIZE/ID: 29 ID27; 33 ID27; 40 ID27; 39 ID27) - TimeIn: 35-40 +0.50 euro
+- OUT group ID28 from rink (-8 people) (SIZE/ID: 27 ID28; 32 ID28; 29 ID28; 44 ID28; 43 ID28; 37 ID28; 43 ID28; 28 ID28) - TimeIn: 35-40 +0.50 euro
+- OUT group ID30 from rink (-2 people) (SIZE/ID: 39 ID30; 44 ID30) - TimeIn: 35-40 +0.50 euro
+- NEW group ID32 of 2 people
+- ADD group ID32 to queue
+- NEW group ID33 of 8 people
+- ADD group ID33 to queue
+- NEW group ID34 of 7 people
+- ADD group ID34 to queue
+- NEW group ID35 of 3 people
+- ADD group ID35 to queue
+- AVAIL skates for group ID31 in queue (38; 31; 42; 43; 40)
+- IN group ID31 (+5 people) (queue: 5 group(s)) (SIZE/ID: 38 ID3; 31 ID0; 42 ID1; 43 ID5; 40 ID1)
+- AVAIL skates for group ID32 in queue (44; 31)
+- IN group ID32 (+2 people) (queue: 4 group(s)) (SIZE/ID: 44 ID4; 31 ID2)
+- AVAIL skates for group ID33 in queue (41; 44; 36; 28; 33; 25; 40; 39)
+- IN group ID33 (+8 people) (queue: 3 group(s)) (SIZE/ID: 41 ID4; 44 ID1; 36 ID5; 28 ID0; 33 ID4; 25 ID2; 40 ID2; 39 ID0)
+- AVAIL skates for group ID35 in queue (35; 30; 25)
+- IN group ID35 (+3 people) (queue: 2 group(s)) (SIZE/ID: 35 ID2; 30 ID5; 25 ID5)
+- Groups in rink: 
+	ID11 - 9 people; (SIZE/ID: 32ID1; 25ID4; 40ID3; 26ID3; 27ID1; 26ID4; 24ID5; 33ID1; 40ID4)
+	ID20 - 6 people; (SIZE/ID: 34ID2; 27ID3; 36ID3; 43ID1; 42ID5; 34ID3)
+	ID21 - 4 people; (SIZE/ID: 29ID3; 27ID4; 44ID0; 25ID3)
+	ID22 - 8 people; (SIZE/ID: 32ID4; 42ID0; 31ID3; 43ID0; 35ID4; 32ID5; 44ID2; 27ID5)
+	ID24 - 7 people; (SIZE/ID: 28ID1; 44ID3; 24ID2; 28ID3; 28ID2; 40ID5; 40ID0)
+	ID25 - 1 people; (SIZE/ID: 25ID1)
+	ID29 - 8 people; (SIZE/ID: 39ID4; 31ID5; 38ID2; 35ID1; 29ID2; 44ID5; 34ID4; 28ID5)
+	ID31 - 5 people; (SIZE/ID: 38ID3; 31ID0; 42ID1; 43ID5; 40ID1)
+	ID32 - 2 people; (SIZE/ID: 44ID4; 31ID2)
+	ID33 - 8 people; (SIZE/ID: 41ID4; 44ID1; 36ID5; 28ID0; 33ID4; 25ID2; 40ID2; 39ID0)
+	ID35 - 3 people; (SIZE/ID: 35ID2; 30ID5; 25ID5)
+
+	Pattini: 
+	Size: 24	 9     9     8     9     9     9    
+	Size: 25	 8     8     8     8     9     8    
+	Size: 26	 8     8     9     9     9     9    
+	Size: 27	 8     9     9     9     9     9    
+	Size: 28	 7     8     8     8     8     8    
+	Size: 29	 9     9     8     9     9     9    
+	Size: 30	 9     9     9     9     9     9    
+	Size: 31	 8     9     8     9     9     9    
+	Size: 32	 7     8     7     8     8     8    
+	Size: 33	 9     9     9     9     9    10    
+	Size: 34	 8     8     8     8     7     8    
+	Size: 35	 8     8     8     9     9     9    
+	Size: 36	 9     9     9     9     9     9    
+	Size: 37	 9     9     9     9     9    10    
+	Size: 38	 9     9     9     9    10    10    
+	Size: 39	 8     9     9     9     9     9    
+	Size: 40	 8     7     7     9     9     9    
+	Size: 41	 9     9     9     9     9    10    
+	Size: 42	 8     8     9     9     9     9    
+	Size: 43	 8     8     8     8     8     8    
+	Size: 44	 8     7     8     8     7     8    
