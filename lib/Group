@@ -8,50 +8,50 @@ using namespace std;
 
 class Group{
 	private:
-		vector<int> size;
-		int nPeople;
-		int timeEnter;
-		int timeExit;
+		int *taglia;
+		int nPersone;
+		int tEntrata;
+		int tUscita;
 		int id;
-		vector<int> skateID;
+		int *skateID;
 	public:
 		Group(){}
-		Group(int nPeople, int id){
-			this->nPeople = nPeople;
-			size = vector<int>(nPeople);
-			for(int i=0; i<nPeople; i++){
-				size[i] = rand()%21+24;
+		Group(int nPersone, int id){
+			this->nPersone = nPersone;
+			taglia = (int*)malloc(sizeof(int)*nPersone);
+			for(int i=0; i<nPersone; i++){
+				taglia[i] = rand()%21+24;
 			}
-			timeEnter = 0;
-			timeExit = 0;
+			skateID = (int*)malloc(sizeof(int)*nPersone);
+			tEntrata = 0;
+			tUscita = 0;
 			this->id = id;
-			skateID = vector<int>(nPeople);
+		}
+		void setSkateID(int i, int id){
+			skateID[i] = id;
+		}
+		int getSkateID(int i){
+			return skateID[i];
 		}
 		int getID(){
 			return id;
 		}
 		int getNPeople(){
-			return nPeople;
+			return nPersone;
 		}
 		int getSize(int i){
-			return size[i];
-		}
-		void setSkateID(int i, int skID){
-			skateID[i] = skID;
-		}
-		int getSkateID(int i){
-			return skateID[i];
+			return taglia[i];
 		}
 		int getTimeEnter(){
-			return timeEnter;
+			return tEntrata;
 		}
 		int getTimeExit(){
-			return timeExit;
+			return tUscita;
 		}
 		void setTimeEnter(int t){
-			timeEnter = t;
+			tEntrata = t;
 		}
 		void setTimeExit(int t){
-			timeExit = t;
+			tUscita = t;
 		}
 };

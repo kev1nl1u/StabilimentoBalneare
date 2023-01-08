@@ -1,41 +1,33 @@
 #pragma once
 
 #include "Group"
-#include "Skate"
+#include "SkateSize"
+#include <iostream>
 
-class SkatesStock{
+using namespace std;
+
+// stock of skates
+class Stock{
 	private:
 		int sizeStart;
 		int sizeEnd;
+		int nSkates; // number of skates for size
+		int rentals; // number of rentals
 		int time;
-		int newMaintenance;
 	public:
-		Skate **skate;
-		SkatesStock(){}
-		SkatesStock(int sizeStart, int sizeEnd){
+		Skate *scorte;
+		Stock(){}
+		Stock(int sizeStart, int sizeEnd, int nSkates, int rentals){
 			this->sizeStart = sizeStart;
 			this->sizeEnd = sizeEnd;
-
-			skate = new Skate*[sizeEnd-sizeStart+1];
-			for(int i=0; i<sizeEnd-sizeStart+1; i++){
-				skate[i] = new Skate[6];
+			this->nSkates = nSkates;
+			this->rentals = rentals;
+			// create array of skates of size*stock
+			scorte = new Skate[sizeEnd-sizeStart+1];
+			for(int i=0; i<getNTaglie(); i++){
+				scorte[i] = Skate(i+sizeStart, nSkates, rentals);
 			}
-			for(int i=0; i<sizeEnd-sizeStart+1; i++){
-				for(int j=0; j<6; j++){
-					skate[i][j] = Skate(i+sizeStart, j);
-				}
-			}
-
-			newMaintenance = 0;
-		}
-		int getStockOfSize(int size){
-			int stock;
-			for(int j=0; j<6; j++){
-				if(skate[size-sizeStart][j].isAvailable()){
-					stock++;
-				}
-			}
-			return stock;
+			time = 0;
 		}
 		int getSizeStart(){
 			return sizeStart;
@@ -46,69 +38,68 @@ class SkatesStock{
 		int getNTaglie(){
 			return sizeEnd-sizeStart+1;
 		}
-		void addStock(int skSize, int skID){
-			skate[skSize-sizeStart][skID].setAvailable(true);
-			if(skate[skSize-sizeStart][skID].checkMaintenance(time)) incNewMaintenance(); // add new maintenance skates counter
+		int getScorte(int size){
+			return scorte[size-sizeStart].availableSkatesID.size();
 		}
-		void incNewMaintenance(){
-			newMaintenance++;
-		}
-		int getNewMaintenance(){
-			return newMaintenance;
-		}
-		void resetNewMaintenance(){
-			newMaintenance = 0;
-		}
-		int removeStock(int size){
-			int j=0;
-			while(!skate[size-sizeStart][j].isAvailable()){
-				j++;
-			}
-			skate[size-sizeStart][j].setAvailable(false);
-			return j; // returns skate id
+		// get scorte of another array of skates
+		int getScorte(Skate *s, int size){
+			return s[size-sizeStart].availableSkatesID.size();
 		}
 		bool checkAvailabilityForGroup(Group g){
-			vector<int> tempstock(sizeEnd-sizeStart+1);
-			for(int i=0; i<sizeEnd-sizeStart+1; i++){
-				tempstock[i] = getStockOfSize(i+sizeStart);
+			// make a copy of the array of skates
+			Skate *tempScorte = new Skate[getNTaglie()];
+			for(int i=0; i<getNTaglie(); i++){
+				tempScorte[i] = scorte[i];
 			}
 			for(int i=0; i<g.getNPeople(); i++){
-				if(tempstock[g.getSize(i)-sizeStart] == 0){
+				if(getScorte(tempScorte, g.getSize(i)) == 0){
 					return false;
 				}
-				tempstock[g.getSize(i)-sizeStart]--;
+				tempScorte[g.getSize(i)-sizeStart].useSkate();
 			}
+			delete[] tempScorte;
 			return true;
 		}
-		int getAvailableSkateID(int size){
-			int j=0;
-			while(!skate[size-sizeStart][j].isAvailable()){
-				j++;
-			}
-			return j;
-		}
-		void removeStockForGroup(Group g){
-			for(int i=0; i<g.getNPeople(); i++){
-				g.setSkateID(i, removeStock(g.getSize(i)));
+		void removeStockForGroup(Group g){ // group enters --> remove Stock
+			if(checkAvailabilityForGroup(g)) // double checks
+				for(int i=0; i<g.getNPeople(); i++)
+					g.setSkateID(i, scorte[g.getSize(i)-sizeStart].useSkate());
+			else{
+				cout << "Error: no skates available for group " << g.getID() << endl;
+				exit(1);
 			}
 		}
 		void addStockForGroup(Group g){
 			for(int i=0; i<g.getNPeople(); i++){
-				addStock(g.getSize(i), g.getSkateID(i));
+				if(i>=g.getNPeople())
+					break;
+				scorte[g.getSize(i)-sizeStart].deuseSkate(g.getSkateID(i));
+				//cout << "Skate " << g.getSize(i) << "ID" << g.getSkateID(i) << " returned" << endl;
 			}
-		}
-		Skate getSkate(int size, int id){
-			return skate[size-sizeStart][id];
+			//cout << endl;
 		}
 		void updateTime(int time){
 			this->time = time;
-			// check skates stop maintenance
-			for(int i=0; i<sizeEnd-sizeStart+1; i++){
-				for(int j=0; j<6; j++){
-					if(skate[i][j].isInMaintenance()){
-						skate[i][j].checkStopMaintenance(time);
-					}
-				}
+			for(int i=0; i<getNTaglie(); i++){
+				scorte[i].updateTime(time);
+			}
+		}
+		double calcExpense(){
+			double newExpense=0;
+			for(int i=0; i<getNTaglie(); i++){
+				newExpense += scorte[i].getNewExpense();
+			}
+			return newExpense;
+		}
+
+
+
+		void print(){
+			//cout << "Stock: " << endl;
+			for(int i=0; i<getNTaglie(); i++){
+				cout << "Size: " << i+sizeStart << endl;
+				scorte[i].print();
+				cout << endl;
 			}
 		}
 };

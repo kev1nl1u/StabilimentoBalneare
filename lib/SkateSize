@@ -1,0 +1,47 @@
+#pragma once
+
+#include <iostream>
+#include "Skate"
+using namespace std;
+
+// array of skates based on size
+class SkateSize{
+	private:
+		int size;
+		int stock;
+		Skate *skates;
+		int ID;
+	public:
+		SkateSize(){}
+		SkateSize(int size, int stock, int uses){
+			this->size = size;
+			this->stock = stock;
+			skates = new Skate[stock];
+			for(int i=0; i<stock; i++){
+				skates[i] = Skate(size, i, uses);
+			}
+		}
+		int getSize(){ return size; }
+		void setSize(int n){ size = n; }
+		int getStock(){ return stock; }
+		void setStock(int n){
+			
+		}
+	
+		void operator++(int){
+			stock++;
+		}
+		int operator--(int){
+			stock--;
+			return ID;
+		}
+		SkateSize(const SkateSize& s){
+			size = s.size;
+			stock = s.stock;
+		}
+		bool operator==(int n){
+			if(stock == n) return true;
+			else return false;
+		}
+	
+};

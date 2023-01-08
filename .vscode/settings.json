@@ -2,6 +2,15 @@
 	"files.associations": {
 		"skatesstock": "cpp",
 		"track": "cpp",
-		"group": "cpp"
+		"group": "cpp",
+		"new": "cpp",
+		"skate": "cpp",
+		"gruppo": "cpp",
+		"ostream": "cpp",
+		"iomanip": "cpp",
+		"cmath": "cpp",
+		"skatesize": "cpp",
+		"iostream": "cpp",
+		"rink": "cpp"
 	}
 }

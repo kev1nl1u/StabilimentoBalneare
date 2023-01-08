@@ -2,21 +2,21 @@
 -----
 Tempo: 0 minuti
 
-Pista: 5 / 100
-composto da 1 gruppi
+Pista: 32 / 100
+composto da 5 gruppi
 
-Pattini: [X: available; O: in use; M: maintenance]
-	24	6 / 6	XXXXXX			25	6 / 6	XXXXXX
-	26	6 / 6	XXXXXX			27	6 / 6	XXXXXX
-	28	6 / 6	XXXXXX			29	6 / 6	XXXXXX
-	30	6 / 6	XXXXXX			31	6 / 6	XXXXXX
-	32	6 / 6	XXXXXX			33	6 / 6	XXXXXX
-	34	4 / 6	OOXXXX			35	6 / 6	XXXXXX
-	36	6 / 6	XXXXXX			37	5 / 6	OXXXXX
-	38	6 / 6	XXXXXX			39	5 / 6	OXXXXX
-	40	6 / 6	XXXXXX			41	6 / 6	XXXXXX
-	42	6 / 6	XXXXXX			43	6 / 6	XXXXXX
-	44	5 / 6	OXXXXX		
+Pattini: 
+	24	4 / 6		OOXXXX			25	5 / 6	OXXXXX
+	26	6 / 6		XXXXXX			27	4 / 6	OOXXXX
+	28	2 / 6		OOOOXX			29	6 / 6	XXXXXX
+	30	6 / 6		XXXXXX			31	4 / 6	OOXXXX
+	32	6 / 6		XXXXXX			33	6 / 6	XXXXXX
+	34	5 / 6		OXXXXX			35	3 / 6	OOOXXX
+	36	5 / 6		OXXXXX			37	3 / 6	OOOXXX
+	38	5 / 6		OXXXXX			39	3 / 6	OOOXXX
+	40	6 / 6		XXXXXX			41	3 / 6	OOOXXX
+	42	5 / 6		OXXXXX			43	3 / 6	OOOXXX
+	44	4 / 6		OOXXXX		
 
 Coda: 0 gruppi (0)
 
@@ -24,343 +24,29 @@ FATTURATO: 0.00 euro
 SPESE: 0.00 euro
 
 LOG: 
-- NEW gruppo {0} di 5 persone
-- ADD gruppo {0} alla coda
-- AVAIL taglie gruppo {0} in coda disponibili (44; 37; 34; 34; 39)
-- IN gruppo {0} (5 persone) (coda: 1 gruppo)
+- NEW gruppo ID0 di 8 persone
+- ADD gruppo ID0 alla coda
+- NEW gruppo ID1 di 2 persone
+- ADD gruppo ID1 alla coda
+- NEW gruppo ID2 di 2 persone
+- ADD gruppo ID2 alla coda
+- NEW gruppo ID3 di 10 persone
+- ADD gruppo ID3 alla coda
+- NEW gruppo ID4 di 10 persone
+- ADD gruppo ID4 alla coda
+- AVAIL taglie gruppo ID0 in coda disponibili (24; 43; 31; 39; 44; 37; 27; 41)
+- IN gruppo ID0 (8 persone) (coda: 5 gruppo) (TAGLIA ID: 24 ID0; 43 ID0; 31 ID0; 39 ID0; 44 ID0; 37 ID0; 27 ID0; 41 ID0)
+- AVAIL taglie gruppo ID1 in coda disponibili (36; 25)
+- IN gruppo ID1 (2 persone) (coda: 4 gruppo) (TAGLIA ID: 36 ID0; 25 ID0)
+- AVAIL taglie gruppo ID2 in coda disponibili (37; 43)
+- IN gruppo ID2 (2 persone) (coda: 3 gruppo) (TAGLIA ID: 37 ID1; 43 ID1)
+- AVAIL taglie gruppo ID3 in coda disponibili (44; 43; 35; 39; 34; 35; 28; 35; 42; 41)
+- IN gruppo ID3 (10 persone) (coda: 2 gruppo) (TAGLIA ID: 44 ID1; 43 ID2; 35 ID0; 39 ID1; 34 ID0; 35 ID1; 28 ID0; 35 ID2; 42 ID0; 41 ID1)
+- AVAIL taglie gruppo ID4 in coda disponibili (28; 24; 41; 37; 28; 28; 39; 31; 38; 27)
+- IN gruppo ID4 (10 persone) (coda: 1 gruppo) (TAGLIA ID: 28 ID1; 24 ID1; 41 ID2; 37 ID2; 28 ID2; 28 ID3; 39 ID2; 31 ID1; 38 ID0; 27 ID1)
 - PISTA gruppi: 
-	{0} - 5 persone - Enter: 0;
-
------
-Tempo: 5 minuti
-
-Pista: 17 / 100
-composto da 4 gruppi
-
-Pattini: [X: available; O: in use; M: maintenance]
-	24	6 / 6	XXXXXX			25	6 / 6	XXXXXX
-	26	5 / 6	OXXXXX			27	5 / 6	OXXXXX
-	28	6 / 6	XXXXXX			29	6 / 6	XXXXXX
-	30	4 / 6	OOXXXX			31	6 / 6	XXXXXX
-	32	6 / 6	XXXXXX			33	6 / 6	XXXXXX
-	34	4 / 6	OOXXXX			35	6 / 6	XXXXXX
-	36	5 / 6	OXXXXX			37	5 / 6	OXXXXX
-	38	4 / 6	OOXXXX			39	4 / 6	OOXXXX
-	40	4 / 6	OOXXXX			41	6 / 6	XXXXXX
-	42	6 / 6	XXXXXX			43	5 / 6	OXXXXX
-	44	4 / 6	OOXXXX		
-
-Coda: 0 gruppi (0)
-
-FATTURATO: 0.00 euro
-SPESE: 1.00 euro
-
-LOG: 
-- NEW gruppo {1} di 1 persone
-- ADD gruppo {1} alla coda
-- NEW gruppo {2} di 4 persone
-- ADD gruppo {2} alla coda
-- NEW gruppo {3} di 7 persone
-- ADD gruppo {3} alla coda
-- AVAIL taglie gruppo {1} in coda disponibili (44)
-- IN gruppo {1} (1 persone) (coda: 3 gruppo)
-- AVAIL taglie gruppo {2} in coda disponibili (38; 26; 27; 40)
-- IN gruppo {2} (4 persone) (coda: 2 gruppo)
-- AVAIL taglie gruppo {3} in coda disponibili (30; 38; 30; 43; 39; 40; 36)
-- IN gruppo {3} (7 persone) (coda: 1 gruppo)
-- PISTA gruppi: 
-	{0} - 5 persone - Enter: 0;
-	{1} - 1 persone - Enter: 5;
-	{2} - 4 persone - Enter: 5;
-	{3} - 7 persone - Enter: 5;
-
------
-Tempo: 10 minuti
-
-Pista: 32 / 100
-composto da 5 gruppi
-
-Pattini: [X: available; O: in use; M: maintenance]
-	24	6 / 6	XXXXXX			25	2 / 6	OOOOXX
-	26	4 / 6	OOXXXX			27	5 / 6	OXXXXX
-	28	6 / 6	XXXXXX			29	5 / 6	OXXXXX
-	30	3 / 6	OOOXXX			31	5 / 6	OXXXXX
-	32	6 / 6	XXXXXX			33	6 / 6	XXXXXX
-	34	3 / 6	OOOXXX			35	6 / 6	XXXXXX
-	36	5 / 6	OXXXXX			37	4 / 6	OOXXXX
-	38	3 / 6	OOOXXX			39	3 / 6	OOOXXX
-	40	2 / 6	OOOOXX			41	6 / 6	XXXXXX
-	42	6 / 6	XXXXXX			43	3 / 6	OOOXXX
-	44	5 / 6	XOXXXX		
-
-Coda: 0 gruppi (0)
-
-FATTURATO: 0.50 euro
-SPESE: 2.00 euro
-
-LOG: 
-- OUT gruppo {1} dalla pista (1 persone) (taglie 44) - TimeIn: 5-10 +0.50 euro
-- NEW gruppo {4} di 10 persone
-- ADD gruppo {4} alla coda
-- NEW gruppo {5} di 6 persone
-- ADD gruppo {5} alla coda
-- AVAIL taglie gruppo {4} in coda disponibili (29; 43; 40; 25; 25; 30; 26; 25; 38; 31)
-- IN gruppo {4} (10 persone) (coda: 2 gruppo)
-- AVAIL taglie gruppo {5} in coda disponibili (40; 25; 37; 43; 39; 34)
-- IN gruppo {5} (6 persone) (coda: 1 gruppo)
-- PISTA gruppi: 
-	{0} - 5 persone - Enter: 0;
-	{2} - 4 persone - Enter: 5;
-	{3} - 7 persone - Enter: 5;
-	{4} - 10 persone - Enter: 10;
-	{5} - 6 persone - Enter: 10;
-
------
-Tempo: 15 minuti
-
-Pista: 57 / 100
-composto da 10 gruppi
-
-Pattini: [X: available; O: in use; M: maintenance]
-	24	1 / 6	OOOOOX			25	1 / 6	OOOOOX
-	26	2 / 6	OOOOXX			27	5 / 6	OXXXXX
-	28	4 / 6	OOXXXX			29	4 / 6	OOXXXX
-	30	3 / 6	OOOXXX			31	4 / 6	OOXXXX
-	32	5 / 6	OXXXXX			33	4 / 6	OOXXXX
-	34	0 / 6	OOOOOO			35	5 / 6	OXXXXX
-	36	4 / 6	OOXXXX			37	0 / 6	OOOOOO
-	38	2 / 6	OOOOXX			39	2 / 6	OOOOXX
-	40	3 / 6	XOOOXX			41	6 / 6	XXXXXX
-	42	5 / 6	OXXXXX			43	3 / 6	OOOXXX
-	44	4 / 6	OOXXXX		
-
-Coda: 0 gruppi (0)
-
-FATTURATO: 0.88 euro
-SPESE: 3.00 euro
-
-LOG: 
-- OUT gruppo {4} dalla pista (10 persone) (taglie 29; 43; 40; 25; 25; 30; 26; 25; 38; 31) - TimeIn: 10-15 +0.38 euro
-- NEW gruppo {6} di 3 persone
-- ADD gruppo {6} alla coda
-- NEW gruppo {7} di 3 persone
-- ADD gruppo {7} alla coda
-- NEW gruppo {8} di 9 persone
-- ADD gruppo {8} alla coda
-- NEW gruppo {9} di 3 persone
-- ADD gruppo {9} alla coda
-- NEW gruppo {10} di 7 persone
-- ADD gruppo {10} alla coda
-- NEW gruppo {11} di 10 persone
-- ADD gruppo {11} alla coda
-- AVAIL taglie gruppo {6} in coda disponibili (33; 34; 44)
-- IN gruppo {6} (3 persone) (coda: 6 gruppo)
-- AVAIL taglie gruppo {7} in coda disponibili (32; 26; 28)
-- IN gruppo {7} (3 persone) (coda: 5 gruppo)
-- AVAIL taglie gruppo {8} in coda disponibili (24; 34; 35; 24; 25; 30; 42; 37; 29)
-- IN gruppo {8} (9 persone) (coda: 4 gruppo)
-- AVAIL taglie gruppo {9} in coda disponibili (36; 37; 43)
-- IN gruppo {9} (3 persone) (coda: 3 gruppo)
-- AVAIL taglie gruppo {10} in coda disponibili (28; 24; 34; 31; 37; 26; 34)
-- IN gruppo {10} (7 persone) (coda: 2 gruppo)
-- AVAIL taglie gruppo {11} in coda disponibili (38; 31; 37; 24; 26; 25; 29; 38; 24; 33)
-- IN gruppo {11} (10 persone) (coda: 1 gruppo)
-- PISTA gruppi: 
-	{0} - 5 persone - Enter: 0;
-	{2} - 4 persone - Enter: 5;
-	{3} - 7 persone - Enter: 5;
-	{5} - 6 persone - Enter: 10;
-	{6} - 3 persone - Enter: 15;
-	{7} - 3 persone - Enter: 15;
-	{8} - 9 persone - Enter: 15;
-	{9} - 3 persone - Enter: 15;
-	{10} - 7 persone - Enter: 15;
-	{11} - 10 persone - Enter: 15;
-
------
-Tempo: 20 minuti
-
-Pista: 57 / 100
-composto da 10 gruppi
-
-Pattini: [X: available; O: in use; M: maintenance]
-	24	1 / 6	OOOOOX			25	0 / 6	OOOOOO
-	26	2 / 6	OOOOXX			27	5 / 6	OXXXXX
-	28	4 / 6	OOXXXX			29	3 / 6	OOOXXX
-	30	2 / 6	OOOOXX			31	4 / 6	OOXXXX
-	32	6 / 6	XXXXXX			33	4 / 6	OOXXXX
-	34	0 / 6	OOOOOO			35	3 / 6	OOOXXX
-	36	3 / 6	OOOXXX			37	0 / 6	OOOOOO
-	38	2 / 6	OOOOXX			39	2 / 6	OOOOXX
-	40	3 / 6	XOOOXX			41	5 / 6	OXXXXX
-	42	5 / 6	OXXXXX			43	1 / 6	OOOOOX
-	44	3 / 6	OOOXXX		
-
-Coda: 0 gruppi (0)
-
-FATTURATO: 4.38 euro
-SPESE: 4.00 euro
-
-LOG: 
-- OUT gruppo {0} dalla pista (5 persone) (taglie 44; 37; 34; 34; 39) - TimeIn: 0-20 +1.50 euro
-- OUT gruppo {3} dalla pista (7 persone) (taglie 30; 38; 30; 43; 39; 40; 36) - TimeIn: 5-20 +1.12 euro
-- OUT gruppo {7} dalla pista (3 persone) (taglie 32; 26; 28) - TimeIn: 15-20 +0.50 euro
-- OUT gruppo {10} dalla pista (7 persone) (taglie 28; 24; 34; 31; 37; 26; 34) - TimeIn: 15-20 +0.38 euro
-- NEW gruppo {12} di 9 persone
-- ADD gruppo {12} alla coda
-- NEW gruppo {13} di 10 persone
-- ADD gruppo {13} alla coda
-- NEW gruppo {14} di 1 persone
-- ADD gruppo {14} alla coda
-- NEW gruppo {15} di 2 persone
-- ADD gruppo {15} alla coda
-- AVAIL taglie gruppo {12} in coda disponibili (24; 36; 36; 28; 29; 34; 35; 30; 44)
-- IN gruppo {12} (9 persone) (coda: 4 gruppo)
-- AVAIL taglie gruppo {13} in coda disponibili (44; 35; 37; 34; 43; 38; 31; 25; 30; 41)
-- IN gruppo {13} (10 persone) (coda: 3 gruppo)
-- AVAIL taglie gruppo {14} in coda disponibili (43)
-- IN gruppo {14} (1 persone) (coda: 2 gruppo)
-- AVAIL taglie gruppo {15} in coda disponibili (26; 43)
-- IN gruppo {15} (2 persone) (coda: 1 gruppo)
-- PISTA gruppi: 
-	{2} - 4 persone - Enter: 5;
-	{5} - 6 persone - Enter: 10;
-	{6} - 3 persone - Enter: 15;
-	{8} - 9 persone - Enter: 15;
-	{9} - 3 persone - Enter: 15;
-	{11} - 10 persone - Enter: 15;
-	{12} - 9 persone - Enter: 20;
-	{13} - 10 persone - Enter: 20;
-	{14} - 1 persone - Enter: 20;
-	{15} - 2 persone - Enter: 20;
-
------
-Tempo: 25 minuti
-
-Pista: 79 / 100
-composto da 12 gruppi
-
-Pattini: [X: available; O: in use; M: maintenance]
-	24	0 / 6	OOOOOO			25	0 / 6	OOOOOO
-	26	1 / 6	OOOOOX			27	5 / 6	OXXXXX
-	28	4 / 6	OOXXXX			29	2 / 6	OOOOXX
-	30	0 / 6	OOOOOO			31	0 / 6	OOOOOO
-	32	5 / 6	OXXXXX			33	3 / 6	OOOXXX
-	34	0 / 6	OOOOOO			35	0 / 6	OOOOOO
-	36	0 / 6	OOOOOO			37	0 / 6	OOOOOO
-	38	2 / 6	OOOOXX			39	0 / 6	OOOOOO
-	40	1 / 6	OOOOOX			41	4 / 6	OOXXXX
-	42	3 / 6	OOOXXX			43	0 / 6	OOOOOO
-	44	2 / 6	OOOOXX		
-
-Coda: 0 gruppi (0)
-
-FATTURATO: 8.75 euro
-SPESE: 5.00 euro
-
-LOG: 
-- OUT gruppo {2} dalla pista (4 persone) (taglie 38; 26; 27; 40) - TimeIn: 5-25 +1.50 euro
-- OUT gruppo {6} dalla pista (3 persone) (taglie 33; 34; 44) - TimeIn: 15-25 +1.00 euro
-- OUT gruppo {9} dalla pista (3 persone) (taglie 36; 37; 43) - TimeIn: 15-25 +1.00 euro
-- OUT gruppo {12} dalla pista (9 persone) (taglie 24; 36; 36; 28; 29; 34; 35; 30; 44) - TimeIn: 20-25 +0.38 euro
-- OUT gruppo {14} dalla pista (1 persone) (taglie 43) - TimeIn: 20-25 +0.50 euro
-- NEW gruppo {16} di 5 persone
-- ADD gruppo {16} alla coda
-- NEW gruppo {17} di 5 persone
-- ADD gruppo {17} alla coda
-- NEW gruppo {18} di 4 persone
-- ADD gruppo {18} alla coda
-- NEW gruppo {19} di 4 persone
-- ADD gruppo {19} alla coda
-- NEW gruppo {20} di 7 persone
-- ADD gruppo {20} alla coda
-- NEW gruppo {21} di 9 persone
-- ADD gruppo {21} alla coda
-- NEW gruppo {22} di 8 persone
-- ADD gruppo {22} alla coda
-- AVAIL taglie gruppo {16} in coda disponibili (31; 32; 44; 28; 31)
-- IN gruppo {16} (5 persone) (coda: 7 gruppo)
-- AVAIL taglie gruppo {17} in coda disponibili (44; 33; 39; 36; 25)
-- IN gruppo {17} (5 persone) (coda: 6 gruppo)
-- AVAIL taglie gruppo {18} in coda disponibili (35; 30; 26; 25)
-- IN gruppo {18} (4 persone) (coda: 5 gruppo)
-- AVAIL taglie gruppo {19} in coda disponibili (25; 25; 33; 37)
-- IN gruppo {19} (4 persone) (coda: 4 gruppo)
-- AVAIL taglie gruppo {20} in coda disponibili (43; 31; 35; 29; 39; 24; 38)
-- IN gruppo {20} (7 persone) (coda: 3 gruppo)
-- AVAIL taglie gruppo {21} in coda disponibili (24; 24; 25; 42; 41; 36; 35; 31; 34)
-- IN gruppo {21} (9 persone) (coda: 2 gruppo)
-- AVAIL taglie gruppo {22} in coda disponibili (43; 26; 37; 42; 31; 27; 36; 37)
-- IN gruppo {22} (8 persone) (coda: 1 gruppo)
-- PISTA gruppi: 
-	{5} - 6 persone - Enter: 10;
-	{8} - 9 persone - Enter: 15;
-	{11} - 10 persone - Enter: 15;
-	{13} - 10 persone - Enter: 20;
-	{15} - 2 persone - Enter: 20;
-	{16} - 5 persone - Enter: 25;
-	{17} - 5 persone - Enter: 25;
-	{18} - 4 persone - Enter: 25;
-	{19} - 4 persone - Enter: 25;
-	{20} - 7 persone - Enter: 25;
-	{21} - 9 persone - Enter: 25;
-	{22} - 8 persone - Enter: 25;
-
------
-Tempo: 30 minuti
-
-Pista: 52 / 100
-composto da 11 gruppi
-
-Pattini: [X: available; O: in use; M: maintenance]
-	24	0 / 6	OOOOOO			25	0 / 6	OOOOOO
-	26	1 / 6	OOOOOX			27	3 / 6	OOOXXX
-	28	5 / 6	XOXXXX			29	2 / 6	OOOOXX
-	30	0 / 6	OOOOOO			31	0 / 6	OOOOOO
-	32	5 / 6	OXXXXX			33	3 / 6	OOOXXX
-	34	1 / 6	XOOOOO			35	1 / 6	XOOOOO
-	36	0 / 6	OOOOOO			37	1 / 6	XOOOOO
-	38	3 / 6	XOOOXX			39	0 / 6	OOOOOO
-	40	1 / 6	OOOOOX			41	5 / 6	XOXXXX
-	42	4 / 6	XOOXXX			43	1 / 6	XOOOOO
-	44	3 / 6	XOOOXX		
-
-Coda: 0 gruppi (0)
-
-FATTURATO: 11.75 euro
-SPESE: 6.00 euro
-
-LOG: 
-- OUT gruppo {8} dalla pista (9 persone) (taglie 24; 34; 35; 24; 25; 30; 42; 37; 29) - TimeIn: 15-30 +1.12 euro
-- OUT gruppo {13} dalla pista (10 persone) (taglie 44; 35; 37; 34; 43; 38; 31; 25; 30; 41) - TimeIn: 20-30 +0.75 euro
-- OUT gruppo {16} dalla pista (5 persone) (taglie 31; 32; 44; 28; 31) - TimeIn: 25-30 +0.38 euro
-- OUT gruppo {18} dalla pista (4 persone) (taglie 35; 30; 26; 25) - TimeIn: 25-30 +0.38 euro
-- OUT gruppo {21} dalla pista (9 persone) (taglie 24; 24; 25; 42; 41; 36; 35; 31; 34) - TimeIn: 25-30 +0.38 euro
-- NEW gruppo {23} di 2 persone
-- ADD gruppo {23} alla coda
-- NEW gruppo {24} di 4 persone
-- ADD gruppo {24} alla coda
-- NEW gruppo {25} di 1 persone
-- ADD gruppo {25} alla coda
-- NEW gruppo {26} di 3 persone
-- ADD gruppo {26} alla coda
-- AVAIL taglie gruppo {23} in coda disponibili (24; 24)
-- IN gruppo {23} (2 persone) (coda: 4 gruppo)
-- AVAIL taglie gruppo {24} in coda disponibili (26; 27; 25; 30)
-- IN gruppo {24} (4 persone) (coda: 3 gruppo)
-- AVAIL taglie gruppo {25} in coda disponibili (32)
-- IN gruppo {25} (1 persone) (coda: 2 gruppo)
-- AVAIL taglie gruppo {26} in coda disponibili (27; 36; 31)
-- IN gruppo {26} (3 persone) (coda: 1 gruppo)
-- PISTA gruppi: 
-	{5} - 6 persone - Enter: 10;
-	{11} - 10 persone - Enter: 15;
-	{15} - 2 persone - Enter: 20;
-	{17} - 5 persone - Enter: 25;
-	{19} - 4 persone - Enter: 25;
-	{20} - 7 persone - Enter: 25;
-	{22} - 8 persone - Enter: 25;
-	{23} - 2 persone - Enter: 30;
-	{24} - 4 persone - Enter: 30;
-	{25} - 1 persone - Enter: 30;
-	{26} - 3 persone - Enter: 30;
+	ID0 - 8 persone; (TAGLIA ID: 24ID0; 43ID0; 31ID0; 39ID0; 44ID0; 37ID0; 27ID0; 41ID0)
+	ID1 - 2 persone; (TAGLIA ID: 36ID0; 25ID0)
+	ID2 - 2 persone; (TAGLIA ID: 37ID1; 43ID1)
+	ID3 - 10 persone; (TAGLIA ID: 44ID1; 43ID2; 35ID0; 39ID1; 34ID0; 35ID1; 28ID0; 35ID2; 42ID0; 41ID1)
+	ID4 - 10 persone; (TAGLIA ID: 28ID1; 24ID1; 41ID2; 37ID2; 28ID2; 28ID3; 39ID2; 31ID1; 38ID0; 27ID1)

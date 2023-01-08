@@ -1,73 +1,136 @@
 #pragma once
 
+#include <iostream>
+#include <vector>
+using namespace std;
+
+typedef struct{
+	int rentalsLeft;
+	bool inMaintenance;
+	bool available;
+	int timeStartMaintenance;
+	int ID;
+} OneSkate;
+
+// skates based on size
 class Skate{
 	private:
 		int size;
-		int rentalsLeft;
-		bool inMaintenance;
-		bool available;
-		int id;
-		int timeStartMaintenance;
+		int rentals;
+		int nSkates;
+		int time;
+		double newExpense;
+		vector<OneSkate> skates;
 	public:
+		vector<int> availableSkatesID;
 		Skate(){}
-		Skate(int size, int id){
+		Skate(int size, int nSkates, int rentals){
 			this->size = size;
-			rentalsLeft = 10;
-			inMaintenance = false;
-			available = true;
-			this->id = id;
-		}
-		bool isAvailable(){
-			return available;
-		}
-		void setAvailable(bool b){
-			available = b;
-		}
-		int getID(){
-			return id;
-		}
-		void setID(int id){
-			this->id = id;
-		}
-		void setSize(int s){
-			size = s;
-		}
-		int getSize(){
-			return size;
-		}
-		int getRentalsLeft(){
-			return rentalsLeft;
-		}
-		void setRentalsLeft(int n){
-			rentalsLeft = n;
-		}
-		void decreaseRentalsLeft(){
-			rentalsLeft--;
-		}
-		bool isInMaintenance(){
-			return inMaintenance;
-		}
-		bool checkMaintenance(int time){
-			if(rentalsLeft == 0 && !inMaintenance){
-				inMaintenance = true;
-				available = false;
-				timeStartMaintenance = time;
-			}else{
-				rentalsLeft--;
+			this->rentals = rentals;
+			this->nSkates = nSkates;
+			skates = vector<OneSkate>(nSkates);
+			for(int i=0; i<nSkates; i++){
+				skates[i].rentalsLeft = rentals;
+				skates[i].inMaintenance = false;
+				skates[i].available = true;
+				skates[i].timeStartMaintenance = 0;
+				skates[i].ID = i;
+				availableSkatesID.push_back(i);
 			}
-			return inMaintenance;
+			time = 0;
+			newExpense = 0;
 		}
-		int gettimeStartMaintenance(){
-			return timeStartMaintenance;
+		int getID(int index){
+			return skates[index].ID;
 		}
-		void settimeStartMaintenance(int time){
-			timeStartMaintenance = time;
+		int getNSkates(){
+			return nSkates;
 		}
-		void checkStopMaintenance(int time){
-			if(timeStartMaintenance+15 == time){
-				inMaintenance = false;
-				available = true;
-				rentalsLeft = 10;
+		bool isAvailable(int i){
+			return skates[i].available;
+		}
+		void setAvailable(int i, bool b){
+			skates[i].available = b;
+		}
+		int getRentalsLeftOf(int i){
+			return skates[i].rentalsLeft;
+		}
+		void setRentalsLeftOf(int i, int n){
+			skates[i].rentalsLeft = n;
+		}
+		void decreaseRentalsLeftOf(int i){
+			skates[i].rentalsLeft--;
+		}
+		double getNewExpense(){
+			return newExpense;
+		}
+		bool isInMaintenance(int i){
+			return skates[i].inMaintenance;
+		}
+		int useSkate(){
+			// set not available in skates
+			int usedID = availableSkatesID[0];
+			setAvailable(usedID, false);
+			decreaseRentalsLeftOf(usedID);
+			availableSkatesID.erase(availableSkatesID.begin());
+			return usedID;
+		}
+		void deuseSkate(int index){;
+			if(checkMaintenance(index)){
+				return;
+			}
+			// set available in skates
+			setAvailable(index, true);
+			availableSkatesID.push_back(skates[index].ID);
+		}
+
+		bool checkMaintenance(int index){
+			if(skates[index].rentalsLeft == 0){
+				skates[index].inMaintenance = true;
+				// setAvailable(index, false); // --> it should be already false
+				skates[index].timeStartMaintenance = time;
+			}
+			return skates[index].inMaintenance;
+		}
+		
+		int getTimeStartMaintenanceOf(int i){
+			return skates[i].timeStartMaintenance;
+		}
+		void checkStopMaintenanceOf(int index){
+			if(skates[index].timeStartMaintenance+15 == time){
+				skates[index].inMaintenance = false;
+				skates[index].available = true;
+				skates[index].rentalsLeft = rentals;
+				availableSkatesID.push_back(skates[index].ID);
+				newExpense += 2;
+			}
+		}
+		void updateTime(int t){
+			newExpense = 0;
+			time = t;
+			for(int i=0; i<nSkates; i++){
+				if(skates[i].inMaintenance){
+					checkStopMaintenanceOf(i);
+				}
+			}
+		}
+
+		// copy constructor
+		Skate(const Skate &s){
+			size = s.size;
+			rentals = s.rentals;
+			nSkates = s.nSkates;
+			time = s.time;
+			skates = s.skates;
+			availableSkatesID = s.availableSkatesID;
+		}
+
+		void print(){
+			for(int i=0; i<nSkates; i++){
+				cout << "\tskate " << i << endl;
+				cout << "\t\trentalsLeft: " << skates[i].rentalsLeft << endl;
+				cout << "\t\tavailable: " << skates[i].available << endl;
+				cout << "\t\tinMaintenance: " << skates[i].inMaintenance << endl;
 			}
 		}
 };
