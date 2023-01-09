@@ -1,4 +1,18 @@
+/***********************
+ * author: Kevin Liu
+ * @kev1nl1u
+ * github.com/kev1nl1u
+ ***********************/
+
 #pragma once
+
+/***** WARNINGS *****/
+#ifdef __APPLE__
+	#warning "This program may not run correctly on Apple systems!"
+#endif
+#ifdef __linux__
+	#warning "This program may not run correctly on Linux systems!"
+#endif
 
 // libraries
 #include "Group"

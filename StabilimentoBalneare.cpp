@@ -1,4 +1,9 @@
 // "Stabilimento Balneare" v2.0 Winter Update
+/***********************
+ * author: Kevin Liu
+ * @kev1nl1u
+ * github.com/kev1nl1u
+ ***********************/
 
 /***** WARNINGS *****/
 #ifdef __APPLE__
