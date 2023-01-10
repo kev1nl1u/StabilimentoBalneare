@@ -259,7 +259,16 @@ int main(){
 		statsString += "\n";
 		int nPeopleInQueue = 0;
 		for(int i=0; i<queue.size(); i++) nPeopleInQueue += queue[i].getNPeople();
-		statsString += "Queue: " + to_string(queue.size()) + " groups (" + to_string(nPeopleInQueue) + " people)\n\n";
+		statsString += "Queue: " + to_string(queue.size()) + " groups (" + to_string(nPeopleInQueue) + " people)\n";
+		for(int i=0; i<queue.size(); i++){
+			statsString += "\tID" + to_string(queue[i].getID()) + ": ";
+			for(int j=0; j<queue[i].getNPeople(); j++){
+				if(j!=0) statsString += "; ";
+				statsString += to_string(queue[i].getSize(j));
+			}
+			statsString += "\n";
+		}
+		statsString += "\n";
 		statsString += "REVENUE: " + roundDoubleToString(iceRink.getRevenue()) + " euro\n";
 		statsString += "EXPENSES: " + roundDoubleToString(iceRink.getExpense()) + " euro\n\n";
 
@@ -267,7 +276,7 @@ int main(){
 		cout << statsString;
 
 		// print commands
-		cout << "ESC to quit" << endl << "F1 to print log in console\t\t" << boolToOnOff(log) << endl << "F2 to print log on\t\t\t" << boolToOnOff(logOnFile) << endl << "F3 to pause/resume" << endl << endl;
+		cout << "ESC to quit" << endl << "F1 to print log in console\t\t" << boolToOnOff(log) << endl << "F2 to print log on file\t\t\t" << boolToOnOff(logOnFile) << endl << "F3 to pause/resume" << endl << endl;
 		
 		// print log
 		logPrinted = false;
